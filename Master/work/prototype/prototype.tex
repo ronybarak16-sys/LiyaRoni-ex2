@@ -1,0 +1,27 @@
+% Phase 4 prototype: tests Hebrew RTL, fonts, headings, table, formula, callouts, TikZ, biblatex
+\documentclass[11pt,openany]{report}
+\input{../../../book/preamble.tex}
+\addbibresource{../../../book/references.bib}
+\begin{document}
+\tableofcontents
+\chapter{בדיקת אב-טיפוס}
+\chaptersubtitle{איך לשרוד מעלית עם שלושה כלבים וחתול}
+\section{עברית, סוגריים ופיסוק}
+טקסט בעברית (עם סוגריים), מספרים 2026, מונח באנגלית \en{Positive Reinforcement} וזמן \en{07:30}. שאלה? כן! ציטוט \cite{avma-warm}.
+\begin{itemize}\item פריט ראשון \item פריט שני\end{itemize}
+\[ T_{\text{daily}} = \sum_{i=1}^{n} t_i = 20+15+35+10 = 80 \]
+\begin{tipbox}טיפ: תגמלו התנהגות רגועה.\end{tipbox}
+\begin{knowbox}כלבים שונים זה מזה.\end{knowbox}
+\begin{mistakebox}למשוך ברצועה.\end{mistakebox}
+\begin{notebox}אספלט חם.\end{notebox}
+\begin{fieldbox}שקית נוספת תמיד בכיס.\end{fieldbox}
+\begin{emergencybox}פנו לווטרינר.\end{emergencybox}
+\begin{table}[h]\centering\caption{בדיקה}
+\begin{tabularx}{\linewidth}{>{\bfseries}lXX}\toprule סוג & יתרון & אתגר\\midrule פארק & צל & כלבים\\bottomrule\end{tabularx}\end{table}
+\begin{center}\begin{tikzpicture}
+\node[draw,fill=sage!30,rounded corners] (a) at (0,0) {ראשון};
+\node[draw,fill=coral!30,rounded corners] (b) at (4,0) {שני (ימינה)};
+\draw[-Stealth,thick] (a) -- (b);
+\end{tikzpicture}\end{center}
+\printbibliography[title={מקורות}]
+\end{document}

@@ -1,0 +1,34 @@
+% =====================================================================
+%  cover.tex — full-bleed cover. Illustration = \cityScene (figures/tikz/dog_illustration.tex)
+% =====================================================================
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture,overlay,hebpar/.style={rtlpar}]
+  % navy background with a subtle diagonal sheen
+  \fill[navy] (current page.south west) rectangle (current page.north east);
+  \fill[white,opacity=0.035] ([yshift=-2cm]current page.north west) -- ([yshift=-9cm]current page.north east)
+        -- (current page.north east) -- (current page.north west) -- cycle;
+  % top label
+  \node[anchor=north east,font=\sffamily\large,text=gold] at ([xshift=-2.3cm,yshift=-2.2cm]current page.north east)
+       {\RLE{\paw[gold]\enspace מדריך מאויר לבעלי כלבים עירוניים}};
+  % title block
+  \node[hebpar,anchor=north east,align=right,text width=16.5cm,font=\sffamily\bfseries,text=white]
+       at ([xshift=-2.3cm,yshift=-3.4cm]current page.north east)
+       {\fontsize{40}{46}\selectfont המדריך הלא-רשמי\\[2pt]
+        \fontsize{30}{38}\selectfont לחיים עם כלב בעיר הגדולה};
+  \fill[coral] ([xshift=-2.3cm,yshift=-7.25cm]current page.north east) rectangle ++(-3.2cm,-0.14cm);
+  \node[hebpar,anchor=north east,align=right,text width=16cm,font=\sffamily\Large,text=cream]
+       at ([xshift=-2.3cm,yshift=-7.75cm]current page.north east)
+       {בין פחמימות לטיולי לילה:\\ המדריך השלם לבעלי כלבים עירוניים};
+  % illustration panel
+  \node[anchor=center,inner sep=0pt] (scene) at ([yshift=-2.6cm]current page.center)
+       {\scalebox{1.18}{\begin{tikzpicture}\clip[rounded corners=8mm] (-0.2,-0.2) rectangle (14.2,6.6);
+        \node[inner sep=0pt,anchor=south west] at (-0.2,-0.2){\cityScene[1]};\end{tikzpicture}}};
+  % footer: authors placeholders (to be supplied by the students — not invented)
+  \node[hebpar,anchor=south east,align=right,text width=12cm,font=\sffamily,text=cream]
+       at ([xshift=-2.3cm,yshift=2.2cm]current page.south east)
+       {\large מחברות ומחברים: [שמות המחברים — יושלם]\\[3pt]
+        \normalsize קוד קבוצה: [XXXXXXXX] \quad·\quad 2026};
+  \node[anchor=south west,font=\sffamily\small,text=sage] at ([xshift=2.3cm,yshift=2.2cm]current page.south west)
+       {\textenglish{Typeset with XeLaTeX · Illustrated with TikZ \& Python}};
+\end{tikzpicture}
+\clearpage

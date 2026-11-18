@@ -1,0 +1,50 @@
+% =====================================================================
+%  eight_block_diagram.tex — decision workflow with EXACTLY EIGHT blocks
+%  "מה עושים כשהכלב מרים משהו חשוד מהרצפה?"
+%  Blocks = the eight \node commands with style `blk`, `startblk`, `endblk` or `decision`
+%  (B1..B8). Edge labels are plain text annotations on arrows, not blocks.
+%  Layout: row 1 reads right->left (Hebrew order), row 2 left->right, row 3 bottom.
+% =====================================================================
+\begin{tikzpicture}[
+    font=\sffamily\small,
+    node distance=1.0cm,
+    base/.style={rtlpar,draw,line width=0.9pt,align=center,text width=3.6cm,minimum height=1.25cm,inner sep=4pt},
+    blk/.style={base,rounded corners=3mm,fill=white,draw=navy},
+    startblk/.style={base,rounded corners=6mm,fill=sage!30!white,draw=sagedark},
+    endblk/.style={base,rounded corners=6mm,fill=gold!30!white,draw=golddark},
+    urgent/.style={base,rounded corners=3mm,fill=alert!9!white,draw=alert,line width=1.4pt},
+    decision/.style={rtlpar,draw=coraldark,fill=coral!18!white,line width=0.9pt,diamond,aspect=1.9,
+                     align=center,text width=2.9cm,inner sep=0pt},
+    arr/.style={-{Stealth[length=7pt]},line width=1.0pt,draw=navy},
+    lbl/.style={font=\sffamily\footnotesize\bfseries,text=coraldark,fill=paper,inner sep=1.5pt},
+    num/.style={circle,fill=navy,text=white,font=\sffamily\scriptsize\bfseries,inner sep=1.2pt,minimum size=13pt}
+  ]
+  % ---- Row 1 (right -> left) ----
+  \node[startblk] (B1) at (12.4,0)  {הכלב הרים או לעס משהו חשוד מהרצפה};
+  \node[blk]      (B2) at (7.2,0)   {הרחיקו אותו בעדינות מהמקום, אם זה בטוח};
+  \node[blk]      (B3) at (2.0,0)   {נסו לזהות מה זה היה: צלמו או שמרו אריזה ושארית};
+  % ---- Row 2 ----
+  % "ייתכן" = is it POSSIBLE: an unsure answer is a "yes" (safety-first branching)
+  \node[decision] (B4) at (2.0,-3.0) {ייתכן שמשהו נבלע, או שיש סימני מצוקה?};
+  \node[urgent]   (B6) at (7.2,-3.0) {פנו מיד לווטרינר או למוקד חירום. אל תגרמו להקאה בעצמכם};
+  \node[blk]      (B7) at (12.4,-3.0){פעלו בדיוק לפי הנחיות הווטרינר};
+  % ---- Row 3 ----
+  \node[blk]      (B5) at (2.0,-6.0) {בוודאות לא נבלע דבר: עקבו אחר הכלב בשעות הקרובות};
+  \node[endblk]   (B8) at (12.4,-6.0){תעדו את האירוע ושפרו את המניעה בטיול הבא};
+
+  % ---- step numbers (badges, not blocks) ----
+  \foreach \b/\n in {B1/1,B2/2,B3/3,B5/5,B6/6,B7/7,B8/8}{\node[num] at (\b.north east) {\n};}
+  \node[num] at (B4.north) {4};
+
+  % ---- arrows ----
+  \draw[arr] (B1) -- (B2);
+  \draw[arr] (B2) -- (B3);
+  \draw[arr] (B3) -- (B4);
+  \draw[arr] (B4) -- node[lbl,above=3pt,pos=0.45] {\RLE{כן}} (B6);
+  \draw[arr] (B6) -- (B7);
+  \draw[arr] (B4) -- node[lbl,right=2pt] {\RLE{לא, בוודאות}} (B5);
+  \draw[arr] (B5.east) -- node[lbl,above=1pt] {\RLE{הכול תקין}} (B8.west);
+  \draw[arr] ([xshift=-0.4cm]B5.north east) |- ([yshift=-0.45cm]B6.south) -- (B6.south);
+  \node[lbl,anchor=north] at ([yshift=-0.5cm,xshift=0.3cm]B6.south) {\RLE{הופיע סימן חריג}};
+  \draw[arr] (B7) -- (B8);
+\end{tikzpicture}

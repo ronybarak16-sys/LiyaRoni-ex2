@@ -1,0 +1,42 @@
+% =====================================================================
+%  main.tex — master entry point
+%  Build: python scripts/build_book.py   (xelatex -> biber -> xelatex x2)
+% =====================================================================
+\documentclass[11pt,a4paper,oneside,openany]{report}
+\input{preamble.tex}
+\addbibresource{references.bib}
+\input{../figures/tikz/dog_illustration.tex}
+\graphicspath{{../figures/generated/}}
+
+\gappto\captionshebrew{%
+  \renewcommand{\contentsname}{תוכן עניינים}%
+  \renewcommand{\figurename}{איור}%
+  \renewcommand{\tablename}{טבלה}%
+  \renewcommand{\bibname}{מקורות}}
+
+\hypersetup{pdftitle={המדריך הלא-רשמי לחיים עם כלב בעיר הגדולה},
+            pdfsubject={בין פחמימות לטיולי לילה: המדריך השלם לבעלי כלבים עירוניים},
+            pdfcreator={XeLaTeX + Claude Code (master / detector / fixer)}}
+
+\begin{document}
+
+% ---------------- Front matter ----------------
+\input{frontmatter/cover.tex}
+\input{frontmatter/abstract.tex}
+
+\tableofcontents
+\thispagestyle{plain}
+\clearpage
+
+\input{frontmatter/introduction.tex}
+
+% ---------------- Chapters ----------------
+\input{chapters/chapter01_psychology.tex}
+\input{chapters/chapter02_city_mapping.tex}
+\input{chapters/chapter03_logistics.tex}
+\input{chapters/chapter04_survival.tex}
+
+% ---------------- Back matter ----------------
+\input{backmatter/acknowledgments.tex}
+
+\end{document}

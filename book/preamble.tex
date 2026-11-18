@@ -3,10 +3,10 @@
 %  Engine: XeLaTeX  |  Language: Hebrew (polyglossia, RTL) + English
 % =====================================================================
 \usepackage[a4paper,top=2.6cm,bottom=2.4cm,inner=2.3cm,outer=2.3cm,
-            headheight=16pt,headsep=12pt,footskip=28pt]{geometry}
+            headheight=22pt,headsep=12pt,footskip=28pt]{geometry}
 \usepackage{fontspec}
-\usepackage{amsmath}
-\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\usepackage[table]{xcolor}   % table option -> \rowcolor in booktabs tables
 \usepackage{graphicx}
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric,arrows.meta,positioning,calc,shadows,fit,backgrounds,decorations.pathmorphing}
@@ -20,13 +20,13 @@
 \usepackage{enumitem}
 \usepackage{caption}
 \usepackage{eso-pic}
-\usepackage[style=numeric,sorting=none,backend=biber,autolang=other]{biblatex}
-\addbibresource{references.bib}
-\usepackage{csquotes}
-\usepackage[hidelinks]{hyperref}  % hyperref before polyglossia/bidi
-\usepackage{polyglossia}          % loads bidi last, as required
+\usepackage[hidelinks]{hyperref}  % hyperref must precede polyglossia (bidi)
+\usepackage{polyglossia}
 \setmainlanguage{hebrew}
 \setotherlanguage{english}
+\usepackage[autostyle=false,style=english]{csquotes} % fixed English quotes in bibliography
+% biblatex must load AFTER polyglossia (prototype finding, see docs/PROCESS_LOG.md)
+\usepackage[style=numeric,sorting=none,backend=biber,autolang=other]{biblatex}
 
 % ---------- Fonts (Windows system fonts verified in Phase 0) ----------
 \setmainfont{David}[Script=Hebrew,Scale=1.12,BoldFont=David Bold]
@@ -34,7 +34,8 @@
 \newfontfamily\hebrewfont{David}[Script=Hebrew,Scale=1.12,BoldFont=David Bold]
 \newfontfamily\hebrewfontsf{Gisha}[Script=Hebrew,BoldFont=Gisha Bold]
 \newfontfamily\englishfont{Arial}[Scale=0.95]
-\newfontfamily\monofont{Consolas}[Scale=0.9]
+\setmonofont{Courier New}[Scale=0.9]
+\newfontfamily\hebrewfonttt{Courier New}[Script=Hebrew,Scale=0.9]
 
 % ---------- Palette ----------
 \definecolor{navy}{HTML}{183153}
@@ -55,6 +56,16 @@
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{5pt plus 1pt}
 \widowpenalty=10000 \clubpenalty=10000
+\emergencystretch=1.5em
+% allow line breaks inside long bibliography URLs
+\renewcommand*{\bibfont}{\small}
+\setcounter{biburlnumpenalty}{100}\setcounter{biburlucpenalty}{200}\setcounter{biburllcpenalty}{100}
+
+% ---------- RTL inside TikZ nodes ----------
+% Verified by measurement (Master/work/rtl_tikz_test): TikZ node text is LTR by default under bidi,
+% and \setRL has no effect inside nodes. Wrapped nodes (text width): `rtlpar` style.
+% Single-line nodes: wrap the text in \RLE{...} (\beginR..\endR misplaced filled labels).
+\tikzset{rtlpar/.style={execute at begin node={\begin{RTL}},execute at end node={\end{RTL}}}}
 
 % ---------- Paw icon (TikZ primitives) ----------
 \newcommand{\paw}[1][navy]{%
@@ -109,9 +120,6 @@
 \fancyfoot[C]{\tikz[baseline=(n.base)]\node[circle,fill=navy,text=white,inner sep=2pt,minimum size=18pt,font=\sffamily\footnotesize\bfseries](n){\thepage};}
 \fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\tikz[baseline=(n.base)]\node[circle,fill=navy,text=white,inner sep=2pt,minimum size=18pt,font=\sffamily\footnotesize\bfseries](n){\thepage};}}
 \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
-\fancyhead[C]{\tikz{\draw[sage,line width=0.6pt] (0,0) -- (\textwidth-2pt,0);}}
-% header accent line drawn under the header text
-\fancyhead[C]{}
 \renewcommand{\headrule}{{\color{sage}\hrule height 0.6pt}}
 \renewcommand{\headrulewidth}{0.6pt}
 
@@ -140,8 +148,7 @@
   title={\textbf{i}\enspace #1},boxed title style={colback=navy}}
 % טעות נפוצה — coral
 \newtcolorbox{mistakebox}[1][טעות נפוצה]{calloutbase,colback=coral!12!white,colframe=coraldark,
-  title={\textbf{✗}\enspace #1},boxed title style={colback=coraldark},
-  fonttitle=\sffamily\bfseries\normalsize}
+  title={$\boldsymbol{\times}$\enspace #1},boxed title style={colback=coraldark}}
 % שימו לב — gold
 \newtcolorbox{notebox}[1][שימו לב]{calloutbase,colback=gold!15!white,colframe=golddark,
   title={\textbf{!}\enspace #1},boxed title style={colback=golddark}}
@@ -162,4 +169,5 @@
 \newcommand{\en}[1]{\textenglish{#1}}
 
 % FAQ entries
-\newcommand{\faq}[1]{\par\addvspace{6pt}{\sffamily\bfseries\color{navy}\paw[coral]\enspace #1\par}\nopagebreak\vspace{1pt}}
+% \setRL: a paragraph that starts with a TikZ picture would otherwise be set LTR (bidi)
+\newcommand{\faq}[1]{\par\addvspace{6pt}\setRL{\sffamily\bfseries\color{navy}\leavevmode\paw[coral]\enspace #1\par}\nopagebreak\vspace{1pt}}
