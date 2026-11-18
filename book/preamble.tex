@@ -67,7 +67,7 @@
 % Single-line nodes: wrap the text in \RLE{...} (\beginR..\endR misplaced filled labels).
 \tikzset{rtlpar/.style={execute at begin node={\begin{RTL}},execute at end node={\end{RTL}}}}
 
-% ---------- Paw icon (TikZ primitives) ----------
+% ---------- Icons (TikZ primitives) ----------
 \newcommand{\paw}[1][navy]{%
   \tikz[baseline=-0.6ex,scale=0.11]{%
     \fill[#1] (0,-0.3) ellipse (1.05 and 0.85);
@@ -75,6 +75,30 @@
     \fill[#1] (-0.42,1.35) ellipse (0.38 and 0.5);
     \fill[#1] (0.42,1.35) ellipse (0.38 and 0.5);
     \fill[#1] (1.15,0.75) ellipse (0.38 and 0.5);}}
+% Callout title icons — drawn shapes, not punctuation glyphs, so no "!" / "+" character ever
+% sits at the start of a Hebrew heading (issue USR-02).
+\newcommand{\warnicon}[1][white]{% triangle with an exclamation bar + dot
+  \leavevmode\tikz[baseline=-0.585ex,x=0.78ex,y=0.78ex]{%
+    \path[use as bounding box] (-1,-0.75) rectangle (1,1.05); % no depth below baseline
+    \draw[#1,line width=0.55pt,line join=round,rounded corners=0.3pt] (0,1.05) -- (-1.05,-0.75) -- (1.05,-0.75) -- cycle;
+    \fill[#1,rounded corners=0.2pt] (-0.11,0.45) rectangle (0.11,-0.2);
+    \fill[#1] (0,-0.45) circle (0.12);}}
+\newcommand{\infoicon}[1][white]{% circle with an "i" built from a dot and a bar
+  \leavevmode\tikz[baseline=-0.585ex,x=0.78ex,y=0.78ex]{%
+    \path[use as bounding box] (-1,-0.75) rectangle (1,1.05); % no depth below baseline
+    \draw[#1,line width=0.55pt] (0,0.1) circle (0.95);
+    \fill[#1] (0,0.6) circle (0.13);
+    \fill[#1,rounded corners=0.2pt] (-0.11,0.3) rectangle (0.11,-0.5);}}
+\newcommand{\crossicon}[1][white]{% circled X
+  \leavevmode\tikz[baseline=-0.585ex,x=0.78ex,y=0.78ex]{%
+    \path[use as bounding box] (-1,-0.75) rectangle (1,1.05); % no depth below baseline
+    \draw[#1,line width=0.55pt] (0,0.1) circle (0.95);
+    \draw[#1,line width=0.8pt,line cap=round] (-0.42,-0.32) -- (0.42,0.52) (-0.42,0.52) -- (0.42,-0.32);}}
+\newcommand{\medicon}[1][white]{% medical cross
+  \leavevmode\tikz[baseline=-0.585ex,x=0.78ex,y=0.78ex]{%
+    \path[use as bounding box] (-1,-0.75) rectangle (1,1.05); % no depth below baseline
+    \fill[#1,rounded corners=0.25pt] (-0.3,-0.75) rectangle (0.3,0.95);
+    \fill[#1,rounded corners=0.25pt] (-0.85,-0.2) rectangle (0.85,0.4);}}
 
 % ---------- Chapter openers ----------
 \newcommand{\chapsubtitle}{}
@@ -135,6 +159,12 @@
 \setlist[itemize]{label={\color{coral}\small$\bullet$}}
 
 % ---------- Callout boxes ----------
+% ROOT-CAUSE FIX (USR-03, page 9): a tcolorbox title is typeset in vertical mode. When its first
+% item is a TikZ picture (paw / icon), the paragraph started left-to-right under bidi, which
+% reversed the Hebrew words and left-aligned the title. Starting the paragraph explicitly with
+% \leavevmode lets bidi's RTL \everypar apply. Set globally so every current and future box title
+% (including inline tcolorboxes such as the Chapter 3 checklist) is covered.
+\tcbset{before title={\leavevmode}}
 \tcbset{calloutbase/.style={enhanced,breakable,arc=3mm,boxrule=0.8pt,
     left=8pt,right=8pt,top=5pt,bottom=5pt,before skip=8pt,after skip=8pt,
     fonttitle=\sffamily\bfseries\normalsize,coltitle=white,
@@ -145,13 +175,13 @@
   title={\paw[white]\enspace #1},boxed title style={colback=sagedark}}
 % כדאי לדעת — navy
 \newtcolorbox{knowbox}[1][כדאי לדעת]{calloutbase,colback=navy!6!white,colframe=navy,
-  title={\textbf{i}\enspace #1},boxed title style={colback=navy}}
+  title={\infoicon\enspace #1},boxed title style={colback=navy}}
 % טעות נפוצה — coral
 \newtcolorbox{mistakebox}[1][טעות נפוצה]{calloutbase,colback=coral!12!white,colframe=coraldark,
-  title={$\boldsymbol{\times}$\enspace #1},boxed title style={colback=coraldark}}
+  title={\crossicon\enspace #1},boxed title style={colback=coraldark}}
 % שימו לב — gold
 \newtcolorbox{notebox}[1][שימו לב]{calloutbase,colback=gold!15!white,colframe=golddark,
-  title={\textbf{!}\enspace #1},boxed title style={colback=golddark}}
+  title={\warnicon\enspace #1},boxed title style={colback=golddark}}
 % טיפ מהשטח — dashed sage, quote-like
 \newtcolorbox{fieldbox}[1][טיפ מהשטח]{enhanced,breakable,arc=3mm,boxrule=0pt,
   colback=cream,left=10pt,right=10pt,top=6pt,bottom=6pt,before skip=8pt,after skip=8pt,
@@ -162,12 +192,12 @@
 \newtcolorbox{emergencybox}[1][מידע חירום — לא לחכות]{enhanced,breakable,arc=2mm,
   boxrule=1.6pt,colframe=alert,colback=alert!5!white,left=10pt,right=10pt,top=6pt,bottom=6pt,
   before skip=8pt,after skip=8pt,
-  title={\textbf{+}\enspace #1},fonttitle=\sffamily\bfseries\large,colbacktitle=alert,coltitle=white,
+  title={\medicon\enspace #1},fonttitle=\sffamily\bfseries\large,colbacktitle=alert,coltitle=white,
   borderline west={4pt}{0pt}{alert}}
 
 % Small inline LTR helper for English terms / times
 \newcommand{\en}[1]{\textenglish{#1}}
 
 % FAQ entries
-% \setRL: a paragraph that starts with a TikZ picture would otherwise be set LTR (bidi)
-\newcommand{\faq}[1]{\par\addvspace{6pt}\setRL{\sffamily\bfseries\color{navy}\leavevmode\paw[coral]\enspace #1\par}\nopagebreak\vspace{1pt}}
+% same root cause as the box titles: start the paragraph before the TikZ paw
+\newcommand{\faq}[1]{\par\addvspace{6pt}{\sffamily\bfseries\color{navy}\leavevmode\paw[coral]\enspace #1\par}\nopagebreak\vspace{1pt}}

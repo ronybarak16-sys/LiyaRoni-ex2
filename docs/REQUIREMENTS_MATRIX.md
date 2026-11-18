@@ -22,7 +22,10 @@ Result: PASS (verified with evidence) · PENDING (needs another agent) · MANUAL
 | Real, verified bibliography | references.bib | 13 | FIXER audit | **PENDING (fixer not started)** |
 | Captions + visual credits | all figures; backmatter | 6–13 | visual | PASS |
 | Page numbers + running headers | preamble.tex (fancyhdr) | all | visual | PASS |
-| Correct RTL | all | all | check_rtl.py 18/18 + visual | PASS (automated) / PENDING detector |
+| Correct RTL | all | all | audit_rtl_full.py 0/1,830 reversed, check_rtl.py 25/25, visual pass of all pages | PASS (master) / PENDING detector |
+| Cover authors + group code | frontmatter/cover.tex | 1 | text + position check | PASS |
+| No leading "!" in headings | preamble.tex (icons) | 4, 8 | grep + render | PASS (master) |
+| p.9 checklist title correct + right-aligned | preamble.tex (`before title`) | 9 | bigram audit + render | PASS (master) |
 | Hebrew language quality | all | all | DETECTOR review | PENDING |
 
 ## Project deliverables

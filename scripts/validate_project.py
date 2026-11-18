@@ -83,6 +83,15 @@ def main():
                        text=True, encoding="utf-8")
     last = (r.stdout.strip().splitlines() or ["no output"])[-1]
     rec("RTL word-order probes", "PASS" if r.returncode == 0 else "FAIL", last)
+    r2 = subprocess.run([sys.executable, str(ROOT / "scripts/audit_rtl_full.py")], capture_output=True,
+                        text=True, encoding="utf-8")
+    first = (r2.stdout.strip().splitlines() or ["no output"])[0]
+    rec("Whole-book RTL bigram audit (0 reversed)", "PASS" if r2.returncode == 0 else "FAIL", first)
+    cover = doc[0].get_text() if 'doc' in dir() else ""
+    for item in ["ליה", "פורת", "רוני", "ברק", "liyaroni-ex2"]:
+        rec(f"Cover contains '{item}'", "PASS" if item in cover else "FAIL", "p.1 text")
+    rec("No author/group placeholders left on cover",
+        "PASS" if not any(x in cover for x in ["XXXXXXXX", "יושלם"]) else "FAIL", "p.1 text")
 
     # ---- project docs / skills ----
     for rel in ["README.md", "docs/PRD.md", "docs/PROMPT_HISTORY.md", "docs/AGENT_COMMUNICATION.md",

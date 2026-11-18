@@ -18,6 +18,12 @@ Agent = the Claude Code session that performed the action.
 | 11 | ~21:28 | master | RTL investigation | Visual reading of Hebrew word order in rasters proved **unreliable**; wrote `scripts/check_rtl.py` that measures word x-positions. Minimal test showed TikZ node text is LTR by default and `\setRL` has no effect inside nodes; `\begin{RTL}` (wrapped) and `\RLE{}` (single line) work; `\beginR…\endR` made filled labels disappear. Final: 18/18 probes PASS. |
 | 12 | ~21:29 | master | Bibliography font `\small`, URL breaking | 13 pages, 0 overfull boxes, 0 missing glyphs. |
 | 13 | ~21:30 | master | Scripts `validate_project.py`, `generate_readme_images.py`; README screenshots rendered from the PDF | — |
+| 14 | ~21:40 | master | P-003 received: cover authors, "!" audit, p.9 reversed title, full RTL audit | `ListAgents`: detector/fixer still absent → master performs FIXER's assigned fixes |
+| 15 | ~21:42 | master | Wrote `scripts/audit_rtl_full.py` (source bigrams vs. PDF lines in visual RTL order) | Found exactly the p.9 title (3 reversed pairs); after excluding pairs across punctuation, 0 false positives |
+| 16 | ~21:44 | master | 5-variant isolated test of tcolorbox title direction | `\leavevmode` before the TikZ icon → correct order and right edge; root cause = paragraph starting with a TikZ picture in vertical mode |
+| 17 | ~21:46 | master | Fix in `\paw` → regression 14 pp.; moved to global `before title`; still 14 pp.; per-line y diff → new icons 2 pt taller; baseline-aligned bounding box | back to 13 pp. |
+| 18 | ~21:50 | master | Cover authors/code; "!" audit (1 genuine "!" in book); drawn icons; fixed vav+cite and `--` | 0 reversed pairs, 25/25 probes, visual pass of all 13 pages |
+| 19 | ~21:55 | master | Screenshots regenerated, validator extended (cover fields, full audit) → 0 FAIL; docs updated; commit + push | see git log |
 
 ## Pending (requires human action)
 - Start the **detector** and **fixer** sessions (see `CLAUDE.md` → *Launching the agents*). Until then:

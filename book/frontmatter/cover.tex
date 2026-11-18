@@ -23,11 +23,12 @@
   \node[anchor=center,inner sep=0pt] (scene) at ([yshift=-2.6cm]current page.center)
        {\scalebox{1.18}{\begin{tikzpicture}\clip[rounded corners=8mm] (-0.2,-0.2) rectangle (14.2,6.6);
         \node[inner sep=0pt,anchor=south west] at (-0.2,-0.2){\cityScene[1]};\end{tikzpicture}}};
-  % footer: authors placeholders (to be supplied by the students — not invented)
+  % footer: authors and group code (supplied by the students, 2026-11-18)
+  % \textenglish isolates the Latin group code as an LTR run inside the RTL line
   \node[hebpar,anchor=south east,align=right,text width=12cm,font=\sffamily,text=cream]
        at ([xshift=-2.3cm,yshift=2.2cm]current page.south east)
-       {\large מחברות ומחברים: [שמות המחברים — יושלם]\\[3pt]
-        \normalsize קוד קבוצה: [XXXXXXXX] \quad·\quad 2026};
+       {\large מגישות: ליה פורת ורוני ברק\\[3pt]
+        \normalsize קוד קבוצה: \textenglish{liyaroni-ex2}\quad·\quad 2026};
   \node[anchor=south west,font=\sffamily\small,text=sage] at ([xshift=2.3cm,yshift=2.2cm]current page.south west)
        {\textenglish{Typeset with XeLaTeX · Illustrated with TikZ \& Python}};
 \end{tikzpicture}

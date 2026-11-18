@@ -2,7 +2,9 @@
 
 | Field | Value |
 |---|---|
-| Version | **v0.1 — initial definition (Master, 2026-11-18)** — awaiting DETECTOR + FIXER review |
+| Version | **v0.2 (Master, 2026-11-18)** — awaiting DETECTOR + FIXER review |
+| Authors | ליה פורת ורוני ברק |
+| Group code | liyaroni-ex2 |
 | Owner | MASTER agent |
 | Reviewers | DETECTOR (critical review), FIXER (feasibility, sources, risk) |
 | Status | DRAFT |
@@ -148,7 +150,7 @@ until 0 open CRITICAL/MAJOR.
 
 **Dependencies**: MiKTeX (XeLaTeX, biber), Python 3.11 + matplotlib/numpy/Pillow/PyMuPDF,
 Windows fonts David/Arial.
-**Assumptions**: author names and group code supplied later (placeholders until then).
+**Assumptions**: none outstanding for metadata — authors ליה פורת ורוני ברק, group code liyaroni-ex2 (P-003).
 **Constraints**: ≤ 20 pages; Hebrew; no remote push without approval.
 
 **Milestones**: M0 inspection · M1 skills+PRD v0.1 · M2 LaTeX prototype · M3 first full draft
@@ -158,6 +160,7 @@ Windows fonts David/Arial.
 | Version | Date | Change | Trigger |
 |---|---|---|---|
 | v0.1 | 2026-11-18 | Initial definition | Master, from assignment brief |
+| v0.2 | 2026-11-18 | Authors and group code added; NFR: RTL correctness verified by automated whole-book audit (`audit_rtl_full.py`) + visual check; callout titles use drawn icons, not punctuation glyphs | user prompt P-003 |
 
 ## 21. Traceability
 Every assignment requirement → `docs/REQUIREMENTS_MATRIX.md` (file, page, method, result).

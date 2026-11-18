@@ -1,5 +1,7 @@
 # Project: המדריך הלא-רשמי לחיים עם כלב בעיר הגדולה
 
+Authors: ליה פורת ורוני ברק · Group code: liyaroni-ex2
+
 Hebrew illustrated LaTeX book (≤ 20 PDF pages) produced by three cooperating Claude Code
 sessions: **master**, **detector**, **fixer**. Shared repository = single source of truth.
 
@@ -32,7 +34,10 @@ python scripts/build_book.py        # figures + xelatex + biber + xelatex x2 -> 
 python scripts/validate_project.py  # automated checks -> docs/VALIDATION_RESULTS.md
 python scripts/generate_readme_images.py
 ```
-Engine: XeLaTeX + polyglossia (Hebrew) + biblatex/biber. Fonts: David (body), Arial (sans) — Windows system fonts.
+Engine: XeLaTeX + polyglossia (Hebrew) + biblatex/biber. Fonts: David (body), Gisha (sans) — Windows system fonts.
+RTL rules: TikZ wrapped nodes use style `rtlpar`, single-line nodes `\RLE{}`; never start a
+paragraph/box title with a TikZ picture without `\leavevmode` (global for tcolorbox titles).
+Check with `python scripts/audit_rtl_full.py` after every change.
 
 ## Rules for every agent
 - Never fabricate sources, messages, screenshots, test results or prompt history.

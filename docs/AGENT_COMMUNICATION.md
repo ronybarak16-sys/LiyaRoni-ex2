@@ -15,7 +15,9 @@ Legend — **TOOL**: a real `ListAgents` / `SendMessage` call whose result is qu
 | Time | Kind | From → To | Type | Content / result |
 |---|---|---|---|---|
 | 2026-11-18 ~20:55 | TOOL | master → (discovery) | ListAgents | "No reachable agents — no other Claude session is running on this machine right now (peer messaging itself is available)" |
-| 2026-11-18 ~21:30 | TOOL | master → (discovery) | ListAgents | to be re-run after the students start the other sessions |
+| 2026-11-18 ~21:35 | TOOL | master → (discovery) | ListAgents | again "No reachable agents" — detector/fixer still not started |
+| 2026-11-18 (P-003 start) | TOOL | master → (discovery) | ListAgents | "No reachable agents" — P-003 assigns RTL fixes to FIXER and final QA to DETECTOR; neither session exists |
+| 2026-11-18 (P-003 end) | TOOL | master → (discovery) | ListAgents | "No reachable agents" — FIXER's assigned corrections were therefore implemented by MASTER (logged as such); DETECTOR final QA **not performed** |
 
 ## Connectivity matrix (6 directed links)
 | Link | Status |

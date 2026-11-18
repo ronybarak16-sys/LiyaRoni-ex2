@@ -20,7 +20,7 @@ Vibe Coding academic project.
 | | |
 |---|---|
 | Book | ✅ compiles, 13 / 20 pages, all mandatory elements present |
-| RTL check | ✅ 18/18 automated word-order probes (`scripts/check_rtl.py`) |
+| RTL check | ✅ whole-book audit: 0 reversed of 1,830 word pairs (`scripts/audit_rtl_full.py`) + 25/25 targeted probes |
 | Source audit (FIXER) | ⏳ pending, FIXER session not yet started |
 | Independent QA (DETECTOR) | ⏳ pending, DETECTOR session not yet started |
 | Live 3-agent communication | ⏳ pending (see [AGENT_COMMUNICATION](docs/AGENT_COMMUNICATION.md)) |
@@ -81,7 +81,8 @@ and the Windows fonts David, Gisha, Arial and Courier New.
 ```powershell
 pip install -r requirements.txt
 python scripts/build_book.py          # figures → xelatex → biber → xelatex ×2 → output/final_book.pdf
-python scripts/check_rtl.py           # RTL word-order probes
+python scripts/check_rtl.py           # targeted RTL word-order probes
+python scripts/audit_rtl_full.py      # whole-book RTL audit (source word pairs vs PDF)
 python scripts/validate_project.py    # requirement checks → docs/VALIDATION_RESULTS.md
 python scripts/generate_readme_images.py
 ```
@@ -104,4 +105,4 @@ output/final_book.pdf
 [Self-assessment](docs/SELF_ASSESSMENT.md)
 
 ## Contributors
-[Student names and group code to be added]. The content is informational and does not replace a veterinarian.
+**ליה פורת ורוני ברק** · group code `liyaroni-ex2`. The content is informational and does not replace a veterinarian.
