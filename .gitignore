@@ -1,0 +1,26 @@
+# LaTeX build artifacts
+build/
+*.aux
+*.log
+*.toc
+*.out
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+*.fls
+*.fdb_latexmk
+*.xdv
+*.synctex.gz
+# Python
+__pycache__/
+*.pyc
+.venv/
+# OS / editor
+Thumbs.db
+.DS_Store
+.vscode/
+# Local Claude settings (may contain machine-specific permissions)
+.claude/settings.local.json
+# Keep the final book intentionally
+!output/final_book.pdf

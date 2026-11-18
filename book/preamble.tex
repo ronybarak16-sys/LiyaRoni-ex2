@@ -1,0 +1,165 @@
+% =====================================================================
+%  preamble.tex — page geometry, fonts, colors, styles and reusable macros
+%  Engine: XeLaTeX  |  Language: Hebrew (polyglossia, RTL) + English
+% =====================================================================
+\usepackage[a4paper,top=2.6cm,bottom=2.4cm,inner=2.3cm,outer=2.3cm,
+            headheight=16pt,headsep=12pt,footskip=28pt]{geometry}
+\usepackage{fontspec}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,arrows.meta,positioning,calc,shadows,fit,backgrounds,decorations.pathmorphing}
+\usepackage[most]{tcolorbox}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{caption}
+\usepackage{eso-pic}
+\usepackage[style=numeric,sorting=none,backend=biber,autolang=other]{biblatex}
+\addbibresource{references.bib}
+\usepackage{csquotes}
+\usepackage[hidelinks]{hyperref}  % hyperref before polyglossia/bidi
+\usepackage{polyglossia}          % loads bidi last, as required
+\setmainlanguage{hebrew}
+\setotherlanguage{english}
+
+% ---------- Fonts (Windows system fonts verified in Phase 0) ----------
+\setmainfont{David}[Script=Hebrew,Scale=1.12,BoldFont=David Bold]
+\setsansfont{Gisha}[Script=Hebrew,BoldFont=Gisha Bold]
+\newfontfamily\hebrewfont{David}[Script=Hebrew,Scale=1.12,BoldFont=David Bold]
+\newfontfamily\hebrewfontsf{Gisha}[Script=Hebrew,BoldFont=Gisha Bold]
+\newfontfamily\englishfont{Arial}[Scale=0.95]
+\newfontfamily\monofont{Consolas}[Scale=0.9]
+
+% ---------- Palette ----------
+\definecolor{navy}{HTML}{183153}
+\definecolor{cream}{HTML}{FFF8ED}
+\definecolor{sage}{HTML}{87A98C}
+\definecolor{sagedark}{HTML}{4F7656}
+\definecolor{coral}{HTML}{E98B73}
+\definecolor{coraldark}{HTML}{B5533B}
+\definecolor{gold}{HTML}{D8B56A}
+\definecolor{golddark}{HTML}{9A7A2E}
+\definecolor{charcoal}{HTML}{333333}
+\definecolor{alert}{HTML}{B3261E}
+\definecolor{paper}{HTML}{FFFCF6}
+
+\pagecolor{paper}
+\color{charcoal}
+\linespread{1.08}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+\widowpenalty=10000 \clubpenalty=10000
+
+% ---------- Paw icon (TikZ primitives) ----------
+\newcommand{\paw}[1][navy]{%
+  \tikz[baseline=-0.6ex,scale=0.11]{%
+    \fill[#1] (0,-0.3) ellipse (1.05 and 0.85);
+    \fill[#1] (-1.15,0.75) ellipse (0.38 and 0.5);
+    \fill[#1] (-0.42,1.35) ellipse (0.38 and 0.5);
+    \fill[#1] (0.42,1.35) ellipse (0.38 and 0.5);
+    \fill[#1] (1.15,0.75) ellipse (0.38 and 0.5);}}
+
+% ---------- Chapter openers ----------
+\newcommand{\chapsubtitle}{}
+\newcommand{\chaptersubtitle}[1]{%
+  \vspace*{-6pt}{\sffamily\large\color{coraldark}#1\par}\vspace{8pt}}
+\titleformat{\chapter}[block]{\normalfont}{}{0pt}{\chapterbanner}
+\titlespacing*{\chapter}{0pt}{-28pt}{12pt}
+\newcommand{\chapterbanner}[1]{%
+  \begin{tcolorbox}[enhanced,colback=navy,colframe=navy,arc=4mm,
+      boxrule=0pt,left=14pt,right=14pt,top=10pt,bottom=12pt,
+      overlay={\node[anchor=south west,opacity=0.18] at ([xshift=6pt,yshift=2pt]frame.south west)
+                 {\paw[cream]\,\paw[cream]\,\paw[cream]};}]
+    {\sffamily\color{gold}\large\bfseries פרק \thechapter\par}\vspace{2pt}
+    {\sffamily\color{white}\fontsize{22}{27}\selectfont\bfseries #1\par}
+  \end{tcolorbox}}
+% Unnumbered chapters (abstract, introduction, bibliography)
+\titleformat{name=\chapter,numberless}[block]{\normalfont}{}{0pt}{\plainbanner}
+\titlespacing*{name=\chapter,numberless}{0pt}{-28pt}{12pt}
+\newcommand{\plainbanner}[1]{%
+  {\sffamily\color{navy}\fontsize{22}{27}\selectfont\bfseries #1\par}
+  \vspace{2pt}{\color{coral}\rule{0.18\linewidth}{2.2pt}}\par}
+
+\titleformat{\section}{\sffamily\large\bfseries\color{navy}}{\paw[coral]\hspace{6pt}}{0pt}{}
+\titlespacing*{\section}{0pt}{11pt}{4pt}
+\titleformat{\subsection}{\sffamily\normalsize\bfseries\color{sagedark}}{}{0pt}{}
+\titlespacing*{\subsection}{0pt}{7pt}{2pt}
+\setcounter{secnumdepth}{0}  % chapters are numbered by the banner; sections stay clean
+\setcounter{tocdepth}{1}
+
+% ---------- Table of contents ----------
+\titlecontents{chapter}[0pt]{\addvspace{8pt}\sffamily\bfseries\color{navy}}
+  {}{}{\titlerule*[0.6pc]{.}\contentspage}
+\titlecontents{section}[1.5em]{\addvspace{1pt}\small}
+  {}{}{\titlerule*[0.6pc]{.}\contentspage}
+
+% ---------- Headers / footers ----------
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\newcommand{\booktitleshort}{המדריך הלא-רשמי לחיים עם כלב בעיר הגדולה}
+\fancyhead[R]{\sffamily\footnotesize\color{sagedark}\booktitleshort}
+\fancyhead[L]{\sffamily\footnotesize\color{navy}\leftmark}
+\fancyfoot[C]{\tikz[baseline=(n.base)]\node[circle,fill=navy,text=white,inner sep=2pt,minimum size=18pt,font=\sffamily\footnotesize\bfseries](n){\thepage};}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\tikz[baseline=(n.base)]\node[circle,fill=navy,text=white,inner sep=2pt,minimum size=18pt,font=\sffamily\footnotesize\bfseries](n){\thepage};}}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\fancyhead[C]{\tikz{\draw[sage,line width=0.6pt] (0,0) -- (\textwidth-2pt,0);}}
+% header accent line drawn under the header text
+\fancyhead[C]{}
+\renewcommand{\headrule}{{\color{sage}\hrule height 0.6pt}}
+\renewcommand{\headrulewidth}{0.6pt}
+
+% ---------- Captions ----------
+\DeclareCaptionFont{capnavy}{\color{navy}}
+\captionsetup{font={small,sf},labelfont={bf,capnavy},labelsep=colon,justification=centering,skip=6pt}
+\captionsetup[table]{position=top}
+\renewcommand{\figurename}{איור}
+\renewcommand{\tablename}{טבלה}
+
+% ---------- Lists ----------
+\setlist{itemsep=1pt,topsep=3pt,parsep=0pt}
+\setlist[itemize]{label={\color{coral}\small$\bullet$}}
+
+% ---------- Callout boxes ----------
+\tcbset{calloutbase/.style={enhanced,breakable,arc=3mm,boxrule=0.8pt,
+    left=8pt,right=8pt,top=5pt,bottom=5pt,before skip=8pt,after skip=8pt,
+    fonttitle=\sffamily\bfseries\normalsize,coltitle=white,
+    attach boxed title to top right={xshift=-10pt,yshift=-8pt},
+    boxed title style={arc=2mm,boxrule=0pt}}}
+% טיפ חשוב — sage
+\newtcolorbox{tipbox}[1][טיפ חשוב]{calloutbase,colback=sage!12!white,colframe=sagedark,
+  title={\paw[white]\enspace #1},boxed title style={colback=sagedark}}
+% כדאי לדעת — navy
+\newtcolorbox{knowbox}[1][כדאי לדעת]{calloutbase,colback=navy!6!white,colframe=navy,
+  title={\textbf{i}\enspace #1},boxed title style={colback=navy}}
+% טעות נפוצה — coral
+\newtcolorbox{mistakebox}[1][טעות נפוצה]{calloutbase,colback=coral!12!white,colframe=coraldark,
+  title={\textbf{✗}\enspace #1},boxed title style={colback=coraldark},
+  fonttitle=\sffamily\bfseries\normalsize}
+% שימו לב — gold
+\newtcolorbox{notebox}[1][שימו לב]{calloutbase,colback=gold!15!white,colframe=golddark,
+  title={\textbf{!}\enspace #1},boxed title style={colback=golddark}}
+% טיפ מהשטח — dashed sage, quote-like
+\newtcolorbox{fieldbox}[1][טיפ מהשטח]{enhanced,breakable,arc=3mm,boxrule=0pt,
+  colback=cream,left=10pt,right=10pt,top=6pt,bottom=6pt,before skip=8pt,after skip=8pt,
+  borderline={1pt}{0pt}{sage,dashed},fontupper=\itshape,
+  title={#1},fonttitle=\sffamily\bfseries\small,coltitle=sagedark,
+  attach title to upper={\enspace},}
+% מידע חירום — strong red frame
+\newtcolorbox{emergencybox}[1][מידע חירום — לא לחכות]{enhanced,breakable,arc=2mm,
+  boxrule=1.6pt,colframe=alert,colback=alert!5!white,left=10pt,right=10pt,top=6pt,bottom=6pt,
+  before skip=8pt,after skip=8pt,
+  title={\textbf{+}\enspace #1},fonttitle=\sffamily\bfseries\large,colbacktitle=alert,coltitle=white,
+  borderline west={4pt}{0pt}{alert}}
+
+% Small inline LTR helper for English terms / times
+\newcommand{\en}[1]{\textenglish{#1}}
+
+% FAQ entries
+\newcommand{\faq}[1]{\par\addvspace{6pt}{\sffamily\bfseries\color{navy}\paw[coral]\enspace #1\par}\nopagebreak\vspace{1pt}}
