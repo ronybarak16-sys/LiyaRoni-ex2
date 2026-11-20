@@ -26,5 +26,7 @@ Closing rule: an issue is **CLOSED** only after DETECTOR marks it VERIFIED.
 | USR-07 | MINOR | references.bib | internal note "PENDING FIXER VERIFICATION" printed in the bibliography | master | FIXED (note removed; status tracked in SOURCE_AUDIT) – awaiting verification |
 | USR-08 | MAJOR | backmatter/acknowledgments.tex | production note claimed Detector/Fixer reviews that have not happened | master | FIXED (describes the designed workflow; status in repo) – awaiting verification |
 
+| USR-09…USR-17 | MAJOR/MINOR | see QA_REPORT round C2 | P-005 review: quote glyphs, bullets, colon spacing, reversed footer, mixed EN/HE sentence, formula sentence, graph labels, field-tip colon, table alignment | master | FIXED – awaiting DETECTOR verification |
+
 Prefix `USR-` = reported by the students (prompt P-003) or found while fixing them.
 DETECTOR and FIXER issues: none yet — sessions not started.

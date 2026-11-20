@@ -38,6 +38,8 @@ Engine: XeLaTeX + polyglossia (Hebrew) + biblatex/biber. Fonts: David (body), Gi
 RTL rules: TikZ wrapped nodes use style `rtlpar`, single-line nodes `\RLE{}`; never start a
 paragraph/box title with a TikZ picture without `\leavevmode` (global for tcolorbox titles).
 Check with `python scripts/audit_rtl_full.py` after every change.
+Typography rules: use ASCII `"` and `'` (not ״ ׳) — `"` is drawn with Gisha automatically; never
+end a Hebrew sentence with inline math or an English word if it can be avoided.
 
 ## Rules for every agent
 - Never fabricate sources, messages, screenshots, test results or prompt history.

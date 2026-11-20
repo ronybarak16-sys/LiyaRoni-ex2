@@ -38,6 +38,24 @@ bibliography, TOC) unchanged and present.
 
 **Independent verification by DETECTOR: NOT PERFORMED (session not running).**
 
+## Correction round C2 — Hebrew review P-005 (performed by MASTER)
+| ID | Reported | Root cause | Fix | Validation |
+|---|---|---|---|---|
+| USR-09 | `"ייזה…שלייי"`, `ייאף מול אףיי`, `ובלתיימים`, etc. (≈25 spots) | David's ״ glyph (and its `"`) look like two yods; text layer was correct | ״→`"`, ׳→`'` everywhere; `"` drawn with Gisha's upright glyph | 0 U+05F4 left; zoom renders |
+| USR-10 | bullets shown as `.` | `\small` coral `$\bullet$` too small | `\textbullet` full size (lists + fridge sheet) | renders pp. 4, 13, 18 |
+| USR-11 | `בבלגן :` | wide side bearing of David's `:`/`;` | XeTeX inter-char kern Hebrew letter → `:`/`;`; colons moved inside bold labels | renders p. 6, 16 (no collision with `)`) |
+| USR-12 | reversed fridge-page footer | paragraph starting with TikZ `\paw` → LTR | `\leavevmode` inside `\paw`; audit gained per-line check (catches it on the old PDF) | audit: 0 bad lines |
+| USR-13 | `Python,LaTeX` order, sentence ending in `Claude Code` | comma-separated English run inside RTL | sentence rewritten with Hebrew between the English terms | render p. 4 |
+| USR-14 | ch.3 formula sentence unclear | sentence ended with inline math | rewritten so it ends in Hebrew | render p. 11 |
+| USR-15 | graph labels `'20 דק` | abbreviation with geresh in matplotlib bidi | "20 דקות", `סה"כ` | render p. 12 |
+| USR-16 | missing `:` after "טיפ מהשטח" | — | `fieldbox` title gets `:` | text layer |
+| USR-17 | (found while checking) first table column lower than its row | `p{}` vs X top alignment | `m{}` columns for all tables | renders pp. 9, 10, 12, 16 |
+| — | `בלה 2.2`, `[]6`, `$:24/7$`, `+` in emergency title | reviewer's OCR/text artefacts; page renders are correct | none | zoom renders |
+| — | "גליות" → "רגליות" | "גליות" (wavy movement) is the intended word | none | — |
+
+Result: 20 pages, 0 overfull boxes, `audit_rtl_full.py` 0 reversed / 0 bad lines, `check_rtl.py` 25/25,
+`validate_project.py` 0 FAIL. **DETECTOR verification: NOT PERFORMED (session not running).**
+
 ## Independent QA rounds (DETECTOR)
 | Round | Date | Scope | CRIT | MAJ | MIN | SUG | Report | Status |
 |---|---|---|---|---|---|---|---|---|

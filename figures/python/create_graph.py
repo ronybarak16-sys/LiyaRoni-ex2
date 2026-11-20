@@ -64,7 +64,7 @@ def main() -> None:
     bars = ax.bar(x, minutes, width=0.56, color=colors, edgecolor=PAPER, linewidth=2, zorder=3)
 
     for bar, value in zip(bars, minutes):
-        ax.text(bar.get_x() + bar.get_width() / 2, value + 0.8, f"{value} דק׳",
+        ax.text(bar.get_x() + bar.get_width() / 2, value + 0.8, f"{value} דקות",
                 ha="center", va="bottom", fontproperties=font, fontsize=11,
                 color=CHARCOAL, fontweight="bold")
 
@@ -79,7 +79,7 @@ def main() -> None:
         ax.spines[side].set_visible(False)
     ax.spines["bottom"].set_color("#BDB8AE")
 
-    ax.text(0.99, 0.97, f"סה״כ ביום: {TOTAL_MINUTES} דקות", transform=ax.transAxes,
+    ax.text(0.99, 0.97, f'סה"כ ביום: {TOTAL_MINUTES} דקות', transform=ax.transAxes,
             ha="right", va="top", fontproperties=font, fontsize=11, color=NAVY,
             fontweight="bold")
     ax.text(0.01, 0.97, "נתונים להמחשה בלבד", transform=ax.transAxes,

@@ -26,6 +26,7 @@ Status as of 2026-11-20 (after P-004). **The project is NOT finished.**
 | P-003 | p.9 title "רשימת ציוד קבועה ליד הדלת" correct + right-aligned | PASS (master) | now p.11 render, audit |
 | P-003 | Hebrew word order across the PDF | PASS (automated + visual) | audit_rtl_full.py 0 reversed |
 | P-003 | Detector independent QA | **NOT PERFORMED** | detector session not running |
+| P-005 | Quotes/gershayim, bullets, colons, footer RTL, formula sentence, graph labels, tables | PASS (master) | QA_REPORT C2, renders, audit 0 bad lines |
 | P-004 | Book exactly 20 pages, substantive content, TOC on one page, RTL audit 0 reversed | PASS (master) | build log, audit_rtl_full.py, visual pass of all pages |
 
 ## Remaining blockers → smallest next action

@@ -16,6 +16,7 @@
 \usepackage{fancyhdr}
 \usepackage{booktabs}
 \usepackage{tabularx}
+\renewcommand{\tabularxcolumn}[1]{m{#1}} % vertically centred cells (P-005)
 \usepackage{array}
 \usepackage{enumitem}
 \usepackage{caption}
@@ -57,6 +58,20 @@
 \setlength{\parskip}{5pt plus 1pt}
 \widowpenalty=10000 \clubpenalty=10000
 \emergencystretch=1.5em
+% Colon spacing: David's colon glyph carries a wide side bearing, so "word :" looked like a space
+% before the colon (P-005). Tighten letter->colon with an inter-character kern (text only, not math).
+\XeTeXinterchartokenstate=1
+\newXeTeXintercharclass\colonclass
+\newXeTeXintercharclass\hebletterclass
+\XeTeXcharclass`\:=\colonclass
+\XeTeXcharclass`\;=\colonclass
+% Hebrew letters U+05D0..U+05EA get their own class so the kern never fires after ')' or digits
+\count255="05D0 \loop \XeTeXcharclass\count255=\hebletterclass \ifnum\count255<"05EA \advance\count255 by 1 \repeat
+\XeTeXinterchartoks \hebletterclass \colonclass = {\kern-0.14em}
+% Quotation mark: David draws '"' slanted, so it looked like two yods ("יי") to readers and OCR
+% (P-005). Typeset the ASCII quote with Gisha's upright glyph; the PDF text layer keeps U+0022.
+\AtBeginDocument{\catcode`\"=\active}
+{\catcode`\"=\active \protected\gdef"{{\hebrewfontsf\char34}}}
 % allow line breaks inside long bibliography URLs
 \renewcommand*{\bibfont}{\small}
 \setcounter{biburlnumpenalty}{100}\setcounter{biburlucpenalty}{200}\setcounter{biburllcpenalty}{100}
@@ -68,8 +83,10 @@
 \tikzset{rtlpar/.style={execute at begin node={\begin{RTL}},execute at end node={\end{RTL}}}}
 
 % ---------- Icons (TikZ primitives) ----------
+% \leavevmode: a paragraph must never START with this TikZ picture in vertical mode, otherwise
+% bidi sets that paragraph LTR (cause of the reversed p.18 footer, review P-005).
 \newcommand{\paw}[1][navy]{%
-  \tikz[baseline=-0.6ex,scale=0.11]{%
+  \leavevmode\tikz[baseline=-0.6ex,scale=0.11]{%
     \fill[#1] (0,-0.3) ellipse (1.05 and 0.85);
     \fill[#1] (-1.15,0.75) ellipse (0.38 and 0.5);
     \fill[#1] (-0.42,1.35) ellipse (0.38 and 0.5);
@@ -157,7 +174,8 @@
 
 % ---------- Lists ----------
 \setlist{itemsep=1pt,topsep=3pt,parsep=0pt}
-\setlist[itemize]{label={\color{coral}\small$\bullet$}}
+% full-size bullet (the earlier \small coral dot was read as a period by readers/OCR, P-005)
+\setlist[itemize]{label={\color{coral}\textbullet}}
 
 % ---------- Callout boxes ----------
 % ROOT-CAUSE FIX (USR-03, page 9): a tcolorbox title is typeset in vertical mode. When its first
@@ -187,7 +205,7 @@
 \newtcolorbox{fieldbox}[1][טיפ מהשטח]{enhanced,breakable,arc=3mm,boxrule=0pt,
   colback=cream,left=10pt,right=10pt,top=6pt,bottom=6pt,before skip=8pt,after skip=8pt,
   borderline={1pt}{0pt}{sage,dashed},fontupper=\itshape,
-  title={#1},fonttitle=\sffamily\bfseries\small,coltitle=sagedark,
+  title={#1:},fonttitle=\sffamily\bfseries\small,coltitle=sagedark,
   attach title to upper={\enspace},}
 % מידע חירום — strong red frame
 \newtcolorbox{emergencybox}[1][מידע חירום — לא לחכות]{enhanced,breakable,arc=2mm,

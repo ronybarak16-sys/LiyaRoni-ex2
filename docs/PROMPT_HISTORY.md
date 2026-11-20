@@ -56,6 +56,27 @@ this session from three empty agent folders.
   Detector/Fixer reviews that had not happened (rewritten to describe the designed workflow).
 - **Status:** done (20 pages); DETECTOR review and FIXER audit of the new claims C-19…C-24 pending.
 
+### P-005 — Hebrew review of the 20-page PDF (quotes, bullets, punctuation, RTL, formula, tables)
+- **Date:** 2026-11-20 · **Agent:** master
+- **Prompt:** a Hebrew item-by-item review (sections 1 and 2; the pasted text was cut off mid-way
+  through section 2). Reported e.g. `"ייזה הרגע…שלייי"`, bullets shown as `.`, `בבלגן :`, reversed
+  fridge-page footer, `Python,LaTeX` ordering, graph labels `'20 דק`, `ובלתיימים` in the TOC.
+- **Diagnosis:** the PDF text layer already contained correct ״/•, but the David font draws the
+  gershayim (and even the ASCII `"`) as two slanted strokes that read as "יי"; the small coral
+  bullet read as a period; David's colon/semicolon carry a wide side bearing; the footer was a real
+  RTL defect (paragraph starting with a TikZ picture) that the audit missed because the same words
+  appear correctly in every running header.
+- **Fixes:** ״→`"` and ׳→`'` in all sources (76 + 16); `"` typeset with Gisha's upright glyph
+  (active char, text layer keeps U+0022); full-size bullets; Hebrew-letter→colon/semicolon kern;
+  colons moved inside bold labels (16); `\paw` starts with `\leavevmode` (root cause of the footer);
+  audit now also flags individual mostly-reversed lines; intro English list and ch.3 formula sentence
+  rewritten; field-tip label gets a colon; graph unit written in full ("20 דקות"); table cells
+  vertically centred.
+- **Not changed (already correct on the page, explained to the students):** `טבלה 2.2`, `[6]`,
+  `24/7:` and the emergency-box title (the "+" is a drawn medical-cross icon); "גליות" (wavy) is the
+  intended word, not "רגליות".
+- **Status:** done; 20 pages; DETECTOR review still not possible (no session).
+
 ---
 ## Internal refinement iterations (master, driven by P-001)
 These are not new user prompts; they are the natural-language-guided iterations Claude made

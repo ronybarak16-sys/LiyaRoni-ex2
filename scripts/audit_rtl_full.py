@@ -63,23 +63,33 @@ def main():
     pdf = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "output" / "final_book.pdf"
     src = source_bigrams()
     seen_ok, seen_rev = set(), defaultdict(list)
+    bad_lines = []
     for pno, words, raw in pdf_lines(pdf):
+        ok_n = rev_n = 0
         for a, b in zip(words, words[1:]):
             if not (a and b):
                 continue
             if (a, b) in src:
-                seen_ok.add((a, b))
+                seen_ok.add((a, b)); ok_n += 1
             if (b, a) in src and a != b:
-                seen_rev[(b, a)].append((pno, raw))
-    suspects = {k: v for k, v in seen_rev.items() if k not in seen_ok}
+                seen_rev[(b, a)].append((pno, raw)); rev_n += 1
+        # Per-line check (added P-005): a line whose word pairs are mostly reversed is a defect even
+        # when the same phrase appears correctly elsewhere (e.g. the running header).
+        if rev_n > ok_n and rev_n >= 1:
+            bad_lines.append((pno, rev_n, ok_n, raw))
+    # ignore pairs that legitimately occur in BOTH orders in the source (e.g. "הספר נבנה" / "נבנה הספר")
+    suspects = {k: v for k, v in seen_rev.items() if k not in seen_ok and (k[1], k[0]) not in src}
     checked = len(seen_ok) + len(suspects)
     print(f"source Hebrew bigrams: {len(src)} | matched in PDF: {checked} | "
-          f"correct order: {len(seen_ok)} | reversed only: {len(suspects)}")
+          f"correct order: {len(seen_ok)} | reversed only: {len(suspects)} | "
+          f"mostly-reversed lines: {len(bad_lines)}")
     for (a, b), hits in sorted(suspects.items(), key=lambda kv: kv[1][0][0]):
         pno, raw = hits[0]
         print(f"  REVERSED p.{pno:<3} '{a} {b}'  ({', '.join(sorted(src[(a, b)]))})")
         print(f"             visual line (right->left): {raw[:110]}")
-    return 1 if suspects else 0
+    for pno, rev_n, ok_n, raw in bad_lines:
+        print(f"  BAD LINE p.{pno:<3} reversed pairs={rev_n} correct={ok_n}: {raw[:110]}")
+    return 1 if (suspects or bad_lines) else 0
 
 
 if __name__ == "__main__":

@@ -28,6 +28,9 @@ Agent = the Claude Code session that performed the action.
 | 21 | ~12:20 | master | First expanded build: TikZ key clash (`step`) → renamed; then 21 pp. | TOC 2 pages, last page 6 lines |
 | 22 | ~12:30 | master | TOC compaction + `\secnotoc`; back matter split (sources p.19 / About p.20); emergency-card column widened; cheat-sheet spacing; removed bib note | 20 pages, 0 overfull, audit 0/2,652 reversed, 25/25 probes, validate 0 FAIL |
 | 23 | ~12:41 | master | Visual pass of all 20 pages (4-up sheets + closer views of pp. 16, 18); screenshots regenerated; docs updated; commit + push | see git log |
+| 24 | 2026-11-20 ~12:45 | master | P-005 review received; `ListAgents` → no peers | text layer checked with PyMuPDF and pdftotext: ״ and • present → glyph-readability problem, not wrong characters |
+| 25 | ~12:50 | master | Quote/geresh replacement, Gisha quote glyph, bullets, colon kern, `\paw` \leavevmode, per-line audit | old PDF: audit now reports `BAD LINE p.18` (footer); new PDF: 0 |
+| 26 | ~12:55 | master | Colon kern hit `)` in the emergency card → restricted to Hebrew letters; table cells m-columns; graph "דקות" | 20 pages, 0 overfull, 0 reversed, 0 bad lines, 25/25 probes, validate 0 FAIL |
 
 ## Pending (requires human action)
 - Start the **detector** and **fixer** sessions (see `CLAUDE.md` → *Launching the agents*). Until then:
