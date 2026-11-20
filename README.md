@@ -1,7 +1,7 @@
 # המדריך הלא-רשמי לחיים עם כלב בעיר הגדולה
 **בין פחמימות לטיולי לילה: המדריך השלם לבעלי כלבים עירוניים**
 
-A 13-page illustrated Hebrew handbook for city dog owners, typeset in XeLaTeX, with every graphic
+A 20-page illustrated Hebrew handbook for city dog owners, typeset in XeLaTeX, with every graphic
 generated from code. A three-agent Claude Code team (MASTER, DETECTOR, FIXER) produced it as a
 Vibe Coding academic project.
 
@@ -19,8 +19,8 @@ Vibe Coding academic project.
 ## Project status
 | | |
 |---|---|
-| Book | ✅ compiles, 13 / 20 pages, all mandatory elements present |
-| RTL check | ✅ whole-book audit: 0 reversed of 1,830 word pairs (`scripts/audit_rtl_full.py`) + 25/25 targeted probes |
+| Book | ✅ compiles, exactly 20 / 20 pages, all mandatory elements present |
+| RTL check | ✅ whole-book audit: 0 reversed of 2,652 word pairs (`scripts/audit_rtl_full.py`) + 25/25 targeted probes |
 | Source audit (FIXER) | ⏳ pending, FIXER session not yet started |
 | Independent QA (DETECTOR) | ⏳ pending, DETECTOR session not yet started |
 | Live 3-agent communication | ⏳ pending (see [AGENT_COMMUNICATION](docs/AGENT_COMMUNICATION.md)) |
@@ -31,12 +31,12 @@ Details are in [`docs/FINAL_CHECKLIST.md`](docs/FINAL_CHECKLIST.md).
 ## The book
 | # | Chapter | Highlights |
 |---|---|---|
-| 1 | הפסיכולוגיה של הכלב העירוני: *איך לשרוד מעלית עם שלושה כלבים וחתול* | body-language panel, elevator scene (TikZ), elevator etiquette |
-| 2 | מיפוי שטח: *הגיאוגרפיה של גינות כלבים ופינות הצל הנכונות* | Python-drawn neighborhood map, comparison table of 5 walking environments |
-| 3 | לוגיסטיקה ואופרציות: *איך לארגן את התיק לטיול של חמש דקות שנגמר בשעה* | gear checklist, formula $T_{daily}=\sum t_i$, matplotlib graph |
-| 4 | מדריך הישרדות: *שאלות נפוצות ותקלות נפוצות* | FAQ, 8-block decision flowchart, emergency box |
+| 1 | הפסיכולוגיה של הכלב העירוני: *איך לשרוד מעלית עם שלושה כלבים וחתול* | body-language panel, elevator scene (TikZ), elevator etiquette, puppy exposure ladder (TikZ), home alone |
+| 2 | מיפוי שטח: *הגיאוגרפיה של גינות כלבים ופינות הצל הנכונות* | Python-drawn neighborhood map, walking-environments table, seasons table, dog-park etiquette |
+| 3 | לוגיסטיקה ואופרציות: *איך לארגן את התיק לטיול של חמש דקות שנגמר בשעה* | gear checklist, formula $T_{daily}=\sum t_i$, matplotlib graph, example week table, emergency bag |
+| 4 | מדריך הישרדות: *שאלות נפוצות ותקלות נפוצות* | 11 FAQs, 8-block decision flowchart, emergency box, fill-in emergency card |
 
-The book also contains a cover, an abstract (תקציר), an automatic TOC, an introduction, a bibliography (biblatex/biber), visual credits and a production note.
+The book also contains a cover, an abstract (תקציר), an automatic TOC, an introduction, two appendices (a short glossary and a one-page fridge cheat sheet), a bibliography (biblatex/biber), and an "About the book" page with visual credits, a production note and the three-agent workflow diagram.
 
 <p align="center">
   <img src="assets/readme/graph_preview.png" width="45%" alt="Page with the Python graph and formula">
@@ -47,6 +47,7 @@ The book also contains a cover, an abstract (תקציר), an automatic TOC, an i
 | Graphic | Source | Technique |
 |---|---|---|
 | Cover city scene + elevator scene | `figures/tikz/dog_illustration.tex` | TikZ `pics` built from ellipses, circles, Bézier paths |
+| Puppy exposure ladder | `figures/tikz/exposure_ladder.tex` | TikZ shapes with a computed colour gradient |
 | Neighborhood planning map | `figures/python/create_illustration.py` | matplotlib patches (Rectangle, Circle, Polygon…) |
 | Walk-time graph (illustrative data) | `figures/python/create_graph.py` | matplotlib, vector PDF |
 | 8-block flowchart | `figures/tikz/eight_block_diagram.tex` | TikZ nodes + arrows |

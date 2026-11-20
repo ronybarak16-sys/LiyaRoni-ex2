@@ -129,9 +129,10 @@
 \setcounter{tocdepth}{1}
 
 % ---------- Table of contents ----------
-\titlecontents{chapter}[0pt]{\addvspace{8pt}\sffamily\bfseries\color{navy}}
+% compact spacing so the expanded TOC (20-page edition) still fits on one page
+\titlecontents{chapter}[0pt]{\addvspace{3pt}\sffamily\bfseries\color{navy}}
   {}{}{\titlerule*[0.6pc]{.}\contentspage}
-\titlecontents{section}[1.5em]{\addvspace{1pt}\small}
+\titlecontents{section}[1.5em]{\addvspace{0pt}\small\linespread{0.86}\selectfont}
   {}{}{\titlerule*[0.6pc]{.}\contentspage}
 
 % ---------- Headers / footers ----------
@@ -201,3 +202,9 @@
 % FAQ entries
 % same root cause as the box titles: start the paragraph before the TikZ paw
 \newcommand{\faq}[1]{\par\addvspace{6pt}{\sffamily\bfseries\color{navy}\leavevmode\paw[coral]\enspace #1\par}\nopagebreak\vspace{1pt}}
+
+% Section with the normal look (incl. paw) but WITHOUT a TOC entry — used for minor sections in
+% the introduction and back matter so the 20-page edition keeps a one-page table of contents.
+\makeatletter
+\newcommand{\secnotoc}[1]{\begingroup\let\addcontentsline\@gobblethree\section{#1}\endgroup}
+\makeatother

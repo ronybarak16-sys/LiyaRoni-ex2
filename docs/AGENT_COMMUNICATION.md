@@ -18,6 +18,7 @@ Legend — **TOOL**: a real `ListAgents` / `SendMessage` call whose result is qu
 | 2026-11-18 ~21:35 | TOOL | master → (discovery) | ListAgents | again "No reachable agents" — detector/fixer still not started |
 | 2026-11-18 (P-003 start) | TOOL | master → (discovery) | ListAgents | "No reachable agents" — P-003 assigns RTL fixes to FIXER and final QA to DETECTOR; neither session exists |
 | 2026-11-18 (P-003 end) | TOOL | master → (discovery) | ListAgents | "No reachable agents" — FIXER's assigned corrections were therefore implemented by MASTER (logged as such); DETECTOR final QA **not performed** |
+| 2026-11-20 (P-004) | TOOL | master → (discovery) | ListAgents | "No reachable agents" (checked at start and before commit) — expansion to 20 pages done by master only |
 
 ## Connectivity matrix (6 directed links)
 | Link | Status |

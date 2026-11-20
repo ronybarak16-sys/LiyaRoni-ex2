@@ -1,32 +1,65 @@
 % =====================================================================
-%  acknowledgments.tex — מקורות, קרדיטים ואיך נבנה הספר
+%  acknowledgments.tex — מקורות (עמוד 19) + על הספר: קרדיטים ואיך נבנה הספר (עמוד 20)
 % =====================================================================
 \chapter*{מקורות}
 \addcontentsline{toc}{chapter}{מקורות}
 \markboth{מקורות}{}
 \thispagestyle{plain}
 
-הטענות העובדתיות במדריך נבדקו מול המקורות שלהלן. בדיקת המקורות, טענה אחר טענה, מתועדת
+הטענות העובדתיות במדריך מבוססות על המקורות שלהלן. הבדיקה של כל טענה מול המקור שלה מתועדת
 במסמך ביקורת המקורות (\en{Source Audit}) שבמאגר הפרויקט.
 
 \begin{english}
 \printbibliography[heading=none]
 \end{english}
+\clearpage
 
-\section{קרדיטים לחומרים חזותיים}
+% ---------------------------------------------------------------------
+\chapter*{על הספר}
+\addcontentsline{toc}{chapter}{על הספר}
+\markboth{על הספר}{}
+\thispagestyle{plain}
+
+\secnotoc{קרדיטים לחומרים חזותיים}
+כל האיורים, הגרפים והתרשימים בספר מקוריים ונוצרו בקוד. קבצי המקור שלהם נמצאים בתיקייה \en{figures}
+שבמאגר הפרויקט, וכולם נוצרים מחדש בפקודת בנייה אחת.
 \begin{itemize}
-  \item \textbf{איור השער ואיור \ref{fig:elevator}}: איורים מקוריים שנבנו בקוד \en{TikZ} מצורות גאומטריות.
-  \item \textbf{איור \ref{fig:map}}: מפה קונספטואלית מקורית שנוצרה בקוד \en{Python}.
+  \item \textbf{איור השער ואיור \ref{fig:elevator}}: איורים שנבנו בקוד \en{TikZ} מצורות גאומטריות.
+  \item \textbf{איור \ref{fig:ladder}}: סולם החשיפה, תרשים בקוד \en{TikZ}.
+  \item \textbf{איור \ref{fig:map}}: מפה קונספטואלית שנוצרה בקוד \en{Python}.
   \item \textbf{איור \ref{fig:graph}}: גרף שנוצר בקוד \en{Python} מנתוני המחשה.
   \item \textbf{איור \ref{fig:flow}}: תרשים זרימה בן שמונה שלבים בקוד \en{TikZ}.
 \end{itemize}
-קבצי המקור של כל האיורים נמצאים בתיקייה \en{figures} שבמאגר הפרויקט, וכולם נוצרים מחדש בפקודת בנייה אחת.
 
-\section{איך נבנה הספר}
-הספר נכתב ונבנה כפרויקט \en{Vibe Coding}, כלומר פיתוח בהנחיה בשפה טבעית בעזרת \en{Claude Code}. שלושה
-סוכנים עבדו על אותו מאגר: \textbf{\en{Master}} כתב ועיצב את הספר וניהל את הפרויקט,
-\textbf{\en{Detector}} בדק באופן עצמאי את השפה, הפריסה והעמידה בדרישות, ו\textbf{\en{Fixer}}
-אימת את המקורות ותיקן ליקויים שאושרו. הספר נכתב בעזרת \en{XeLaTeX} עם \en{polyglossia} לתמיכה בעברית
-ובכיווניות מימין לשמאל, והגרפים והאיורים נוצרו בקוד \en{Python} ובשפת השרטוט \en{TikZ}. כל קבצי המקור, יומני
-התהליך ודוחות הבדיקה נמצאים במאגר הפרויקט. בינה מלאכותית שימשה ככלי עבודה, והאחריות לתוכן
-נשארת של המחברים.
+\secnotoc{איך נבנה הספר}
+הספר נכתב ונבנה כפרויקט \en{Vibe Coding}, כלומר פיתוח בהנחיה בשפה טבעית בעזרת \en{Claude Code}.
+הטקסט נכתב בעזרת \en{XeLaTeX} עם \en{polyglossia}, לתמיכה בעברית ובכיווניות מימין לשמאל, והגרפים
+והאיורים נוצרו בקוד \en{Python} ובשפת השרטוט \en{TikZ}.
+
+תהליך העבודה תוכנן סביב שלושה סוכנים בעלי תפקידים נפרדים, שעובדים על אותו מאגר קבצים:
+
+\begin{center}
+\begin{tikzpicture}[font=\sffamily\small,
+    agent/.style={rtlpar,draw,rounded corners=3mm,line width=1pt,align=center,text width=3.3cm,
+                  minimum height=1.5cm,inner sep=4pt},
+    arr/.style={-{Stealth[length=6pt]},line width=0.9pt,draw=navy},
+    lbl/.style={font=\sffamily\scriptsize,text=charcoal,fill=paper,inner sep=1.5pt}]
+  \node[agent,fill=navy!8!white,draw=navy]          (M) at (11,0)  {\textbf{\en{Master}}\\ כתיבה, עיצוב וניהול};
+  \node[agent,fill=coral!14!white,draw=coraldark]   (D) at (5.5,0) {\textbf{\en{Detector}}\\ בדיקת איכות עצמאית};
+  \node[agent,fill=sage!20!white,draw=sagedark]     (F) at (0,0)   {\textbf{\en{Fixer}}\\ אימות מקורות ותיקונים};
+  \draw[arr] ([yshift=5pt]M.west) -- node[lbl,above=2pt]{\RLE{בקשת בדיקה}} ([yshift=5pt]D.east);
+  \draw[arr] ([yshift=-5pt]D.east) -- node[lbl,below=2pt]{\RLE{דוח ליקויים}} ([yshift=-5pt]M.west);
+  \draw[arr] (M.north) -- ++(0,0.55) -| node[lbl,pos=0.25,above=1pt]{\RLE{בקשת תיקון ואימות מקורות}} (F.north);
+  \draw[arr] (F.south) -- ++(0,-0.55) -| node[lbl,pos=0.25,below=1pt]{\RLE{בקשה לבדיקה חוזרת}} (D.south);
+\end{tikzpicture}
+\end{center}
+
+\en{Master} כותב ומעצב את הספר ומחליט על קבלת השינויים, \en{Detector} בודק באופן עצמאי את השפה,
+הפריסה והעמידה בדרישות, ו\en{Fixer} מאמת את המקורות ומתקן ליקויים שאושרו. מצב הביצוע בפועל של
+כל שלב, כולל אילו בדיקות כבר הושלמו, מתועד ביומני התהליך ובדוחות הבדיקה שבמאגר הפרויקט.
+בינה מלאכותית שימשה ככלי עבודה, והאחריות לתוכן נשארת של המחברות.
+
+\vfill
+\begin{knowbox}[מגישות]
+ליה פורת ורוני ברק \enspace·\enspace קוד קבוצה: \en{liyaroni-ex2} \enspace·\enspace 2026
+\end{knowbox}

@@ -24,6 +24,10 @@ Agent = the Claude Code session that performed the action.
 | 17 | ~21:46 | master | Fix in `\paw` → regression 14 pp.; moved to global `before title`; still 14 pp.; per-line y diff → new icons 2 pt taller; baseline-aligned bounding box | back to 13 pp. |
 | 18 | ~21:50 | master | Cover authors/code; "!" audit (1 genuine "!" in book); drawn icons; fixed vav+cite and `--` | 0 reversed pairs, 25/25 probes, visual pass of all 13 pages |
 | 19 | ~21:55 | master | Screenshots regenerated, validator extended (cover fields, full audit) → 0 FAIL; docs updated; commit + push | see git log |
+| 20 | 2026-11-20 ~12:00 | master | P-004: expand to 20 pages; `ListAgents` → no peers | content plan: 6 new sections, 5 FAQs, emergency card, 2 appendices, About page |
+| 21 | ~12:20 | master | First expanded build: TikZ key clash (`step`) → renamed; then 21 pp. | TOC 2 pages, last page 6 lines |
+| 22 | ~12:30 | master | TOC compaction + `\secnotoc`; back matter split (sources p.19 / About p.20); emergency-card column widened; cheat-sheet spacing; removed bib note | 20 pages, 0 overfull, audit 0/2,652 reversed, 25/25 probes, validate 0 FAIL |
+| 23 | ~12:41 | master | Visual pass of all 20 pages (4-up sheets + closer views of pp. 16, 18); screenshots regenerated; docs updated; commit + push | see git log |
 
 ## Pending (requires human action)
 - Start the **detector** and **fixer** sessions (see `CLAUDE.md` → *Launching the agents*). Until then:

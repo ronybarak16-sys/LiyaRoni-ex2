@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Version | **v0.2 (Master, 2026-11-18)** — awaiting DETECTOR + FIXER review |
+| Version | **v0.3 (Master, 2026-11-20)** — awaiting DETECTOR + FIXER review |
 | Authors | ליה פורת ורוני ברק |
 | Group code | liyaroni-ex2 |
 | Owner | MASTER agent |
@@ -90,7 +90,12 @@ not verified by FIXER; nutrition plans; printed publication; English edition.
 | Ch.3 Logistics & operations (graph, formula) | `book/chapters/chapter03_logistics.tex` | 3 |
 | Ch.4 Survival guide FAQ (8-block diagram) | `book/chapters/chapter04_survival.tex` | 3 |
 | Bibliography + production note | `book/backmatter/acknowledgments.tex` | 1–2 |
-| **Total** | | **15–17** |
+| **Total (v0.1 budget)** | | **15–17** |
+
+**v0.3 actual layout (20 pages, students' request P-004):** cover 1 · abstract 2 · TOC 3 · introduction 4 ·
+ch.1 pp. 5–7 · ch.2 pp. 8–10 · ch.3 pp. 11–13 · ch.4 pp. 14–16 · appendix A glossary 17 · appendix B fridge
+sheet 18 · sources 19 · about the book 20. Added content is substantive (exposure ladder, home alone,
+seasons, park etiquette, example week, emergency bag, 5 FAQs, emergency card, glossary, cheat sheet).
 
 ## 12. Design principles
 Modern urban lifestyle guide. Palette: navy `#183153`, cream `#FFF8ED`, sage `#87A98C`,
@@ -160,6 +165,7 @@ Windows fonts David/Arial.
 | Version | Date | Change | Trigger |
 |---|---|---|---|
 | v0.1 | 2026-11-18 | Initial definition | Master, from assignment brief |
+| v0.3 | 2026-11-20 | Book expanded to exactly 20 pages with new sections and appendices (see §11) | user prompt P-004 |
 | v0.2 | 2026-11-18 | Authors and group code added; NFR: RTL correctness verified by automated whole-book audit (`audit_rtl_full.py`) + visual check; callout titles use drawn icons, not punctuation glyphs | user prompt P-003 |
 
 ## 21. Traceability

@@ -16,13 +16,15 @@ Closing rule: an issue is **CLOSED** only after DETECTOR marks it VERIFIED.
 | M-08 | MINOR | book/references.bib | quotes shown as `?`; Hebrew note in law entry garbled | master | FIXED – awaiting verification |
 | M-09 | MINOR | backmatter | URLs/paths overflow margin (4 overfull hboxes) | master | FIXED (0 overfull) – awaiting verification |
 | M-10 | MINOR | figures/tikz/eight_block_diagram.tex | label "כן / לא בטוח" overlapped block 6 → shortened to "כן" (block 4 asks "is it *possible*") | master | FIXED – DETECTOR to judge safety wording |
-| M-11 | SUGGESTION | whole book | 13 pages vs. 16–19 target in brief (max 20 respected) | master | OPEN – for PRD review; do not pad artificially |
+| M-11 | SUGGESTION | whole book | 13 pages vs. 16–19 target in brief (max 20 respected) | master | RESOLVED by P-004: expanded to 20 pages with substantive content – awaiting DETECTOR review |
 | USR-01 | MAJOR | cover.tex | author/group placeholders on cover | master (P-003) | FIXED – awaiting DETECTOR verification |
 | USR-02 | MAJOR | preamble.tex | leading "!" (and i/×/+ glyphs) in callout titles, pp. 4, 8 | master (assigned to FIXER; session unavailable) | FIXED – awaiting verification |
 | USR-03 | CRITICAL | preamble.tex (box titles) | p.9 checklist title reversed + left-aligned | master (assigned to FIXER; session unavailable) | FIXED (root cause) – awaiting verification |
 | USR-04 | MINOR | chapter03_logistics.tex | vav prefix glued to citation | master | FIXED – awaiting verification |
 | USR-05 | MINOR | references.bib | literal `--` in bibliography | master | FIXED – awaiting verification |
 | USR-06 | MAJOR | preamble.tex | regression 13→14 pages during USR-02/03 fix | master | FIXED – awaiting verification |
+| USR-07 | MINOR | references.bib | internal note "PENDING FIXER VERIFICATION" printed in the bibliography | master | FIXED (note removed; status tracked in SOURCE_AUDIT) – awaiting verification |
+| USR-08 | MAJOR | backmatter/acknowledgments.tex | production note claimed Detector/Fixer reviews that have not happened | master | FIXED (describes the designed workflow; status in repo) – awaiting verification |
 
 Prefix `USR-` = reported by the students (prompt P-003) or found while fixing them.
 DETECTOR and FIXER issues: none yet — sessions not started.

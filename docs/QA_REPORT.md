@@ -26,6 +26,18 @@ additionally at 95–140 dpi. Mandatory elements (graph, table, formula, illustr
 bibliography, TOC) unchanged and present.
 **Independent verification by DETECTOR: NOT PERFORMED (session not running).**
 
+## Expansion round E1 — user prompt P-004 (performed by MASTER)
+| Check | Result |
+|---|---|
+| Page count | **20** (build log + PyMuPDF) |
+| TOC | one page (p.3), 4 minor sections intentionally excluded via `\secnotoc` |
+| RTL | `audit_rtl_full.py`: 2,652 matched word pairs, 0 reversed; `check_rtl.py` 25/25 |
+| Layout | 0 overfull boxes, 0 missing glyphs; all 20 pages visually inspected; fixes: emergency-card label column, cheat-sheet spacing/bullet colour, orphan last page removed |
+| Content integrity | bibliography internal note removed (USR-07); production note no longer claims unperformed reviews (USR-08) |
+| Validation | `validate_project.py` 0 FAIL |
+
+**Independent verification by DETECTOR: NOT PERFORMED (session not running).**
+
 ## Independent QA rounds (DETECTOR)
 | Round | Date | Scope | CRIT | MAJ | MIN | SUG | Report | Status |
 |---|---|---|---|---|---|---|---|---|

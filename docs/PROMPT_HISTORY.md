@@ -40,6 +40,22 @@ this session from three empty agent folders.
 - **Agents:** detector/fixer sessions still not running → fixes done by master; independent QA pending.
 - **Status:** done except DETECTOR verification.
 
+### P-004 — "add more pages to the book, i need that will be 20 pages at total"
+- **Date:** 2026-11-20 · **Agent:** master
+- **Purpose:** expand the book from 13 to exactly 20 PDF pages.
+- **Decision:** add substantive content rather than padding (whitespace/font tricks), consistent
+  with the brief's rule "never artificially expand".
+- **Result:** new sections — ch.1 puppy exposure ladder (new TikZ figure) and home-alone; ch.2
+  seasons table and dog-park etiquette; ch.3 example-week table and emergency bag; ch.4 five FAQs
+  and a fill-in emergency card; appendices A (glossary) and B (fridge cheat sheet); an "About the
+  book" page with credits, production note and agent-workflow diagram. 1 new reference (avsab-puppy).
+- **Problems discovered and fixed:** first build 21 pp. (TOC spilled to 2 pages; 6-line orphan
+  page) → compact TOC spacing, minor sections excluded from TOC (`\secnotoc`), back matter split
+  into two balanced pages; TikZ style name `step` clashed with a built-in key; an internal
+  "PENDING FIXER VERIFICATION" note was printed in the bibliography; the production note claimed
+  Detector/Fixer reviews that had not happened (rewritten to describe the designed workflow).
+- **Status:** done (20 pages); DETECTOR review and FIXER audit of the new claims C-19…C-24 pending.
+
 ---
 ## Internal refinement iterations (master, driven by P-001)
 These are not new user prompts; they are the natural-language-guided iterations Claude made

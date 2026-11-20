@@ -26,7 +26,14 @@ Allowed results: VERIFIED · PARTIALLY VERIFIED · UNSUPPORTED · NEEDS CLARIFIC
 | C-16 | 4 | Sniffing calms many dogs | — | PENDING | unsourced; source or soften |
 | C-17 | 4 | Sudden refusal (e.g. elevator) may indicate pain → consult a vet | — | PENDING | general advice; source or keep as recommendation |
 | C-18 | 3 | Walk durations 20/15/35/10 min | — | N/A | explicitly labelled illustrative data, not a recommendation |
+| C-19 | 1 | AVSAB recommends early, controlled, positive socialisation of puppies, coordinated with the vet regarding vaccination status | avsab-puppy | PENDING | added in P-004; bib URL points to the AVSAB position-statements index — FIXER to confirm the statement and its direct URL/year |
+| C-20 | 1 | Home-alone distress (barking, destruction, accidents) is usually distress, not "revenge", and is treatable; see vet then reward-based trainer | avsab2021 (partial) | PENDING | general behavioural advice; FIXER to find a direct source or soften |
+| C-21 | 4 | Avoid equipment that works through pain/pressure on the neck | avsab2021 | PENDING | check the AVSAB statement covers this |
+| C-22 | 4 | Stray dog without tag: a vet or the municipal veterinary service can scan the microchip | — | PENDING | Israeli municipal vet services; FIXER to source |
+| C-23 | 4 | Noise-phobic dogs: consult the vet in advance of fireworks | — | PENDING | general advice; source or keep as recommendation |
+| C-24 | 2 | Puppies: consult the vet before a first dog-park visit (vaccination status) | avsab-puppy | PENDING | |
 
 ## Bibliography entries to verify (`book/references.bib`)
 avma-warm · aspca-apcc · aspca-foods · hall2020 (doi 10.1038/s41598-020-66015-8) · avsab2021 ·
-ziv2017 (doi 10.1016/j.jveb.2017.02.004) · hiby2004 · rspca-behaviour · il-doglaw2002 (no URL yet)
+ziv2017 (doi 10.1016/j.jveb.2017.02.004) · hiby2004 · rspca-behaviour · il-doglaw2002 (no URL yet) ·
+avsab-puppy (added 2026-11-20; URL is an index page, direct PDF to be confirmed)

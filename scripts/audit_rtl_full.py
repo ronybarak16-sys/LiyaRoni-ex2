@@ -35,6 +35,7 @@ def source_bigrams():
     for f in files:
         for line in f.read_text(encoding="utf-8").splitlines():
             line = re.sub(r"(?<!\\)%.*", "", line)                 # comments
+            line = line.replace("}{", " | ")                       # separate macro arguments
             line = re.sub(r"\\[a-zA-Z]+\*?(\[[^\]]*\])?", " ", line)  # commands (keep their {text})
             line = re.sub(r"[{}$\\&]", " ", line)
             toks = line.split()
