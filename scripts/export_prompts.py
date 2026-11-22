@@ -281,6 +281,29 @@ ANNOTATIONS = {
         files="scripts/export_prompts.py, docs/prompts/*, docs/DEVELOPMENT_HISTORY.md, docs/GIT_LOG.md.",
         followup="PROC-1-08 and PROC-1-15 and COLLABORATION.md are handled by MASTER, not FIXER.",
     ),
+    "60890c88|2026-11-22T20:21:22": dict(
+        type="LLM guidance",
+        summary="MASTER -> DETECTOR: T-709 final verification of the P-007 process work (9 checks)",
+        purpose="Independently verify the prompt files, development history, Git log, pushes/pulls, tags and "
+                "collaboration evidence against the transcripts and Git (9 checks).",
+        result="Detector/reports/PROCESS-R2.md, ISSUE_REPORT DET-T709-001: 9 checks; PROC-2-01...03 opened "
+               "(history/Git log stop at 98eae31, Prompt_18 unannotated, communication log), PROC-1-14 reopened. "
+               "Hand-back 22:24:13 local.",
+        files="Detector/reports/PROCESS-R2.md.",
+        followup="PROC-2-01 and PROC-2-02 sent to FIXER as T-706b (Prompt_19); PROC-2-03 handled by MASTER.",
+    ),
+    "60890c88|2026-11-22T20:24:29": dict(
+        type="correction",
+        summary="MASTER -> FIXER: FIX_REQUEST T-706b, close PROC-2-01/02 (documentation catch-up)",
+        purpose="Annotate Prompt_18/19 in the export; append commits 6f01187, 9ae3897, 3bc0d81, 364e757, the pushes "
+                "of 22:17:34 and 22:21:12, the 3 annotated tags and the agent hand-back times to "
+                "DEVELOPMENT_HISTORY.md and GIT_LOG.md; add a 'Documentation closure' note.",
+        result="Export re-run with all prompts annotated; DEVELOPMENT_HISTORY.md and GIT_LOG.md extended "
+               "(closes PROC-2-01, PROC-2-02 and the reopened PROC-1-14). Not committed by FIXER.",
+        files="scripts/export_prompts.py, docs/prompts/*, docs/DEVELOPMENT_HISTORY.md, docs/GIT_LOG.md.",
+        followup="The final RETEST message to DETECTOR and the final commit are documented by MASTER in that "
+                 "commit (a log cannot contain the commit that adds it).",
+    ),
 }
 TEAM_FIELD = "Requires Team Member Action — to be filled by ליה פורת / רוני ברק"
 

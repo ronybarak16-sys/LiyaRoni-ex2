@@ -74,17 +74,31 @@ No commits or pushes were made in this session.
 | 2026-11-22 22:12:37 (20:12:37) | AGENT TASK | [Prompt_16](prompts/Prompt_16.md) | MASTER → FIXER (SendMessage): T-703/704/705 prompt files, this history, the Git log | subagent `agent-adefe62868df00f7a` |
 | 2026-11-22 22:13:09 (20:13:09) | COMMIT | Prompt_14 | `98eae31` docs: assign P-007 tasks and add the collaboration plan | git |
 | 2026-11-22 22:13:12 (20:13:12) | PUSH | — | `98eae31` | reflog |
-| 2026-11-22 (after 22:12) | AGENT RESULT | Prompt_15 | DETECTOR: [PROCESS-R1](../Detector/reports/PROCESS-R1.md), 15 findings (6 MAJOR, 8 MINOR, 1 SUGGESTION) | report |
+| 2026-11-22 22:16:38 (20:16:38) | AGENT RESULT | Prompt_15 | DETECTOR hand-back: [PROCESS-R1](../Detector/reports/PROCESS-R1.md), 15 findings (6 MAJOR, 8 MINOR, 1 SUGGESTION) | transcript, report |
 | 2026-11-22 22:16:57 (20:16:57) | AGENT TASK | [Prompt_17](prompts/Prompt_17.md) | MASTER → FIXER (SendMessage): FIX_REQUEST T-706, fold the approved PROC findings into T-703…705 | subagent `agent-adefe62868df00f7a` |
-| 2026-11-22 | — | Prompt_16/17 | FIXER wrote `scripts/export_prompts.py`, `docs/prompts/` (17 files + README), this file and `docs/GIT_LOG.md`. FIXER made no commit; MASTER commits after review. | this file |
+| 2026-11-22 22:17:25 (20:17:25) | COMMIT | Prompt_15 | `6f01187` qa(process): add Detector review of prompt docs and Git history (PROCESS-R1, committed separately as evidence) | git |
+| 2026-11-22 22:17:26 (20:17:26) | COMMIT | Prompt_14 (PROC-1-08) | `9ae3897` docs(process): correct stale agent-status statements | git |
+| 2026-11-22 22:17:31 (20:17:31) | TAG | Prompt_14 (PROC-1-15) | annotated tags `v0.1-first-draft` → b1cec22, `v0.2-twenty-pages` → cefcbb7, `v1.0-qa-approved` → 5b39519 (tagger ronybarak16-sys) | `git for-each-ref refs/tags` |
+| 2026-11-22 22:17:34 (20:17:34) | PUSH | — | `98eae31..9ae3897` (includes 6f01187) and the 3 new tags in the same push | reflog; push output in the transcript (22:17:38) |
+| 2026-11-22 22:20:39 (20:20:39) | AGENT RESULT | Prompt_16/17 | FIXER hand-back M-f-004: `scripts/export_prompts.py`, `docs/prompts/` (17 files + README), this file and `docs/GIT_LOG.md`, all uncommitted | transcript |
+| 2026-11-22 22:21:08 (20:21:08) | COMMIT | Prompt_16/17 | `3bc0d81` docs(prompts): add numbered per-prompt files exported from transcripts | git |
+| 2026-11-22 22:21:08 (20:21:08) | COMMIT | Prompt_16/17 | `364e757` docs(history): add central development history and Git activity log | git |
+| 2026-11-22 22:21:12 (20:21:12) | PUSH | — | `9ae3897..364e757` (includes 3bc0d81) | reflog |
+| 2026-11-22 22:21:22 (20:21:22) | AGENT TASK | [Prompt_18](prompts/Prompt_18.md) | MASTER → DETECTOR (SendMessage): T-709 final verification, 9 checks | subagent `agent-a60444777a0353b60` |
+| 2026-11-22 22:24:13 (20:24:13) | AGENT RESULT | Prompt_18 | DETECTOR hand-back: [PROCESS-R2](../Detector/reports/PROCESS-R2.md), ISSUE_REPORT DET-T709-001; PROC-2-01…03 opened, PROC-1-14 reopened | transcript, report |
+| 2026-11-22 22:24:29 (20:24:29) | AGENT TASK | [Prompt_19](prompts/Prompt_19.md) | MASTER → FIXER (SendMessage): FIX_REQUEST T-706b, close PROC-2-01/02 | subagent `agent-adefe62868df00f7a` |
+| 2026-11-22 | — | Prompt_19 | FIXER annotated Prompt_18/19, re-ran the export (19 files) and extended this file and GIT_LOG.md. FIXER made no commit. | this file |
 
-## Totals (as of 2026-11-22, after Prompt_17)
+### Documentation closure
+The final RETEST message to DETECTOR (it will be Prompt_20) and the final commit that adds these files are documented by MASTER in that final commit. A log cannot contain the commit that adds it.
+
+## Totals (as of 2026-11-22, after Prompt_19)
 - **Sessions:** 2 main sessions. `03e07aff` was abandoned; `60890c88` is the submitted project. It has 2 subagents, DETECTOR and FIXER, both launched on 2026-11-20 and resumed via SendMessage.
-- **Prompts:** 17 numbered.
+- **Prompts:** 19 numbered.
   - 9 human: 2 in `03e07aff`, 7 in `60890c88`, including the mid-turn Prompt_04.
-  - 8 MASTER→agent: 2 Agent launches and 6 SendMessage. Of these, 3 went to DETECTOR and 5 to FIXER.
+  - 10 MASTER→agent: 2 Agent launches and 8 SendMessage. Of these, 4 went to DETECTOR and 6 to FIXER.
 - **System events:** 4 control inputs (stop, stop, resume, stop) and 5 harness events (failed run, /rate-limit-options with its output, limit reset ×2).
-- **Commits and pushes:** 7 commits and 7 pushes, all under the single identity `ronybarak16-sys`. Details are in [GIT_LOG.md](GIT_LOG.md).
+- **Commits, pushes and tags:** 11 commits, 9 pushes and 3 annotated tags (pushed at 22:17:34), all under the single identity `ronybarak16-sys`. Details are in [GIT_LOG.md](GIT_LOG.md).
 - **Pulls and merges:** 0. Second identity in the history: none (see docs/COLLABORATION.md, T-710, Requires Team Member Action).
 - **Page counts:** 39 (abandoned `AAA.style.pdf`) → 13 (b1cec22, 82e8261) → 21 (intermediate build) → 20 (cefcbb7 onward).
 - **Not recorded:** who typed each human prompt (field "Submitted by (team member)" in every Prompt file: Requires Team Member Action); who removed the session-03e07aff files and why.

@@ -37,9 +37,20 @@ History has **not** been rewritten: no amend, rebase, reword or force-push. Old 
 | 12 | push | `5b39519` | 2026-11-22 22:03:05 (20:03:05) | — | — | |
 | 13 | commit | `98eae31` | 2026-11-22 22:13:09 (20:13:09) | ronybarak16-sys | [Prompt_14](prompts/Prompt_14.md) (P-007) | P-007 task split and collaboration plan |
 | 14 | push | `98eae31` | 2026-11-22 22:13:12 (20:13:12) | — | — | |
+| 15 | commit | `6f01187` | 2026-11-22 22:17:25 (20:17:25) | ronybarak16-sys | [Prompt_15](prompts/Prompt_15.md), T-701/702 | Detector PROCESS-R1 report, committed separately as evidence |
+| 16 | commit | `9ae3897` | 2026-11-22 22:17:26 (20:17:26) | ronybarak16-sys | [Prompt_14](prompts/Prompt_14.md), PROC-1-08 | stale agent-status statements corrected |
+| 17 | tags (annotated) | `v0.1-first-draft`→b1cec22, `v0.2-twenty-pages`→cefcbb7, `v1.0-qa-approved`→5b39519 | 2026-11-22 22:17:31 (20:17:31) | ronybarak16-sys (tagger) | PROC-1-15 | milestone tags; no history rewritten |
+| 18 | push (branch + 3 tags) | `98eae31..9ae3897` | 2026-11-22 22:17:34 (20:17:34) | — | — | includes 6f01187; push output: `* [new tag]` ×3 |
+| 19 | commit | `3bc0d81` | 2026-11-22 22:21:08 (20:21:08) | ronybarak16-sys | [Prompt_16](prompts/Prompt_16.md)/[17](prompts/Prompt_17.md), T-703/706 | numbered prompt files + export script |
+| 20 | commit | `364e757` | 2026-11-22 22:21:08 (20:21:08) | ronybarak16-sys | Prompt_16/17, T-704/705 | development history + this Git log |
+| 21 | push | `9ae3897..364e757` | 2026-11-22 22:21:12 (20:21:12) | — | — | includes 3bc0d81 |
 
-Push evidence: this is the verbatim output of `git reflog show origin/main --date=iso` as of 2026-11-22 22:13. Every entry is "update by push", one per commit, each 3–10 seconds after its commit.
+Push evidence: this is the verbatim output of `git reflog show origin/main --date=iso` as of 2026-11-22 22:24. Every entry is "update by push". Two of the pushes carried two commits each (22:17:34 and 22:21:12).
+
+Tag evidence: `git ls-remote --tags origin` lists `refs/tags/v0.1-first-draft^{}` = b1cec221…, `v0.2-twenty-pages^{}` = cefcbb7f…, `v1.0-qa-approved^{}` = 5b395193…. Tag pushes are not shown in the origin/main reflog; the push output in the session transcript (22:17:38) shows them.
 ```
+364e757 refs/remotes/origin/main@{2026-11-22 22:21:12 +0200}: update by push
+9ae3897 refs/remotes/origin/main@{2026-11-22 22:17:34 +0200}: update by push
 98eae31 refs/remotes/origin/main@{2026-11-22 22:13:12 +0200}: update by push
 5b39519 refs/remotes/origin/main@{2026-11-22 22:03:05 +0200}: update by push
 06ae08e refs/remotes/origin/main@{2026-11-20 13:01:21 +0200}: update by push
@@ -48,7 +59,7 @@ cefcbb7 refs/remotes/origin/main@{2026-11-20 12:43:10 +0200}: update by push
 b1cec22 refs/remotes/origin/main@{2026-11-18 21:32:39 +0200}: update by push
 cc384df refs/remotes/origin/main@{2026-11-18 21:10:35 +0200}: update by push
 ```
-Note: when MASTER verified the facts in `Master/work/TASKS-P007.md` and `docs/COLLABORATION.md`, there were 6 commits. `98eae31` itself is the 7th commit.
+Note: when MASTER verified the facts in `Master/work/TASKS-P007.md`, there were 6 commits; `98eae31` is the 7th, and the total is now 11 commits (as of `364e757`).
 
 ## 2. Commit details
 
@@ -110,6 +121,34 @@ Note: when MASTER verified the facts in `Master/work/TASKS-P007.md` and `docs/CO
 - Files (2, +93): `Master/work/TASKS-P007.md`, `docs/COLLABORATION.md`.
 - What and why: the response to Prompt_14, the previous-assignment feedback. It contains the task split T-701 to T-710 and the collaboration plan, with the actions that only Liya or Rony can perform.
 - Message quality: the first commit to use a `docs:` type prefix, with a body that explains why.
+
+### `6f01187` — "qa(process): add Detector review of prompt docs and Git history"
+- Date: 2026-11-22 22:17:25 +0200. Pushed 22:17:34, together with 9ae3897.
+- Files (1, +238): `Detector/reports/PROCESS-R1.md`.
+- What and why: DETECTOR's T-701/T-702 review (Prompt_15), with 15 findings. It was committed on its own, as evidence, before the fixes it triggered. That follows the new convention. Refs: P-007, T-701, T-702.
+
+### `9ae3897` — "docs(process): correct stale agent-status statements (PROC-1-08)"
+- Date: 2026-11-22 22:17:26 +0200. Pushed 22:17:34, together with the 3 tags.
+- Files (5, +30/−18): `CLAUDE.md`, `docs/AGENT_COMMUNICATION.md`, `docs/COLLABORATION.md`, `docs/PROCESS_LOG.md`, `docs/PROMPT_HISTORY.md`.
+- What and why: these files still said that DETECTOR and FIXER were "not started", although both had run as MASTER-launched agents. The commit also fixes the connectivity matrix, flags the false "earlier history: none" claim, and corrects the commit count in COLLABORATION.md. Refs: P-007, PROC-1-08.
+
+### Tags `v0.1-first-draft`, `v0.2-twenty-pages`, `v1.0-qa-approved`
+- Created 2026-11-22 22:17:31 +0200 (annotated, tagger ronybarak16-sys) and pushed at 22:17:34.
+- They point to `b1cec22` (first complete 13-page draft, P-001), `cefcbb7` (exactly 20 pages, P-004) and `5b39519` (Detector QA-R2 approved, P-006).
+- Why: PROC-1-15. They mark the milestones without rewriting history.
+
+### `3bc0d81` — "docs(prompts): add numbered per-prompt files exported from transcripts"
+- Date: 2026-11-22 22:21:08 +0200. Pushed 22:21:12, together with 364e757.
+- Files (18 at that time): `scripts/export_prompts.py`, `docs/prompts/Prompt_01..17.md`, `docs/prompts/README.md`.
+- What and why: one file per prompt with its exact text, generated reproducibly from the transcripts. This answers the feedback that the prompt documentation was a single unstructured file. Refs: P-007, T-703, T-706, PROC-1-01..07.
+
+### `364e757` — "docs(history): add central development history and Git activity log"
+- Date: 2026-11-22 22:21:08 +0200. Pushed 22:21:12.
+- Files (2, +231): `docs/DEVELOPMENT_HISTORY.md`, `docs/GIT_LOG.md`.
+- What and why: a central chronological history, plus a Git log with one row per commit and per push, and the commit conventions. Refs: P-007, T-704, T-705, PROC-1-13, PROC-1-14.
+
+### Documentation closure
+This log goes up to `364e757` and the push at 22:21:12; the uncommitted updates from T-706b (Prompt_19) are also described here. The final RETEST message to DETECTOR (it will be Prompt_20) and the final commit that adds these updates are documented by MASTER in that final commit. A log cannot contain the commit that adds it.
 
 ## 3. Commit message conventions from now on
 These apply to **new** commits only. Old commits stay as documented above and are never reworded.

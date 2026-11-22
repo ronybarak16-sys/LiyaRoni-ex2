@@ -1,4 +1,4 @@
-# Prompt 04 of 17
+# Prompt 04 of 19
 
 Type: **LLM guidance** · Kind: human · Source record: `60890c88` 2026-11-18T19:10:14.107Z (UTC)
 
