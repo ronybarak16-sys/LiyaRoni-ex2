@@ -26,6 +26,8 @@ Status as of 2026-11-22 (after P-006: Detector/Fixer QA cycle, QA_APPROVED). **T
 | P-003 | p.9 title "רשימת ציוד קבועה ליד הדלת" correct + right-aligned | PASS (master) | now p.11 render, audit |
 | P-003 | Hebrew word order across the PDF | PASS (automated + visual) | audit_rtl_full.py 0 reversed |
 | P-003 | Detector independent QA | **NOT PERFORMED** | detector session not running |
+| P-007 | Numbered prompt files, development history, Git log, commit conventions | PASS | DETECTOR QA_APPROVED DET-T709b-001; docs/P007_FINAL_SUMMARY.md |
+| P-007 | Both team members under own Git identities, pulls/merges | **Requires Team Member Action** | docs/COLLABORATION.md TM-1…TM-8 |
 | P-006 | Detector full review + Fixer fixes + Detector retest until no open issues | PASS | QA-R2: all 26 R1 issues VERIFIED/closed, 0 regressions |
 | P-006 | Source audit of all references | PASS | 16 entries checked; 18 VERIFIED, 4 PARTIAL (hedged), 1 REMOVED |
 | P-005 | Quotes/gershayim, bullets, colons, footer RTL, formula sentence, graph labels, tables | PASS (master) | QA_REPORT C2, renders, audit 0 bad lines |

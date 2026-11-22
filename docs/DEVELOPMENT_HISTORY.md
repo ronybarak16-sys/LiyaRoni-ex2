@@ -102,3 +102,12 @@ The final RETEST message to DETECTOR (it will be Prompt_20) and the final commit
 - **Pulls and merges:** 0. Second identity in the history: none (see docs/COLLABORATION.md, T-710, Requires Team Member Action).
 - **Page counts:** 39 (abandoned `AAA.style.pdf`) → 13 (b1cec22, 82e8261) → 21 (intermediate build) → 20 (cefcbb7 onward).
 - **Not recorded:** who typed each human prompt (field "Submitted by (team member)" in every Prompt file: Requires Team Member Action); who removed the session-03e07aff files and why.
+
+### Closure entries (added by MASTER in the P-007 closing commit)
+| Time (local) | Kind | Entry |
+|---|---|---|
+| 2026-11-22 22:26:21 (push, reflog) | COMMIT + PUSH | `7745de5` docs(history): extend prompt files, history and Git log to Prompt_19 · `80fc2d4` qa(process): add Detector final check and exact-time message register (pushed together) |
+| 2026-11-22 22:26:30 | AGENT TASK | [Prompt_20](prompts/Prompt_20.md) MASTER → DETECTOR final RETEST T-709b |
+| 2026-11-22 (after 22:26) | AGENT RESULT | DETECTOR QA_APPROVED DET-T709b-001 — PROC-2-01…03, PROC-1-14 verified; only team actions remain |
+| 2026-11-22 | COMMIT | `b1a649b` qa(process): record Detector final approval of P-007 documentation (evidence alone) |
+| 2026-11-22 | COMMIT + PUSH | **this commit** `docs(process): close P-007 …` — adds Prompt_20, `docs/P007_FINAL_SUMMARY.md`, README section; pushed with `b1a649b` |

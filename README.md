@@ -86,6 +86,13 @@ from this project, each found by running and inspecting the output:
 
 See [`docs/PROMPT_HISTORY.md`](docs/PROMPT_HISTORY.md) and [`docs/PROCESS_LOG.md`](docs/PROCESS_LOG.md).
 
+## AI process documentation, Git history and collaboration
+Added in response to the previous assignment's feedback (prompt [P-007](docs/prompts/Prompt_14.md)):
+- **Every AI prompt in its own numbered file:** [`docs/prompts/`](docs/prompts/README.md) — 20 prompts (9 human, 11 Master→agent), exact text exported from the Claude Code transcripts by `scripts/export_prompts.py`, each with date/time, agent, purpose, result, files and follow-ups.
+- **Central chronology:** [`docs/DEVELOPMENT_HISTORY.md`](docs/DEVELOPMENT_HISTORY.md) — sessions, prompts, agent tasks, system events, builds, commits and pushes with exact times.
+- **Git activity:** [`docs/GIT_LOG.md`](docs/GIT_LOG.md) — every commit (what/why), push and milestone tag; commit conventions `type(scope): summary` + why-body + `Refs:`.
+- **Collaboration:** [`docs/COLLABORATION.md`](docs/COLLABORATION.md) — current evidence (one Git identity so far, no pulls yet) and the actions each team member must perform. Summary with statuses: [`docs/P007_FINAL_SUMMARY.md`](docs/P007_FINAL_SUMMARY.md).
+
 ## Build
 Prerequisites: Python ≥ 3.11, a TeX distribution with XeLaTeX + biber (developed on MiKTeX 25.12),
 and the Windows fonts David, Gisha, Arial and Courier New.

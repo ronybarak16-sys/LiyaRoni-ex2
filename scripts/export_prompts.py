@@ -292,6 +292,18 @@ ANNOTATIONS = {
         files="Detector/reports/PROCESS-R2.md.",
         followup="PROC-2-01 and PROC-2-02 sent to FIXER as T-706b (Prompt_19); PROC-2-03 handled by MASTER.",
     ),
+    "60890c88|2026-11-22T20:26:30": dict(
+        type="LLM guidance",
+        summary="MASTER -> DETECTOR: final RETEST T-709b of PROC-2-01..03 and PROC-1-14",
+        purpose="Final independent recheck of the documentation catch-up (history, Git log, prompt files, "
+                "message register) before closing P-007.",
+        result="QA_APPROVED DET-T709b-001 ('Retest R2b' in Detector/reports/PROCESS-R2.md): PROC-2-01..03 and "
+               "PROC-1-14 VERIFIED; checks 1-5 and 9 Completed; 6 pushes Completed / pulls and 7-8 collaboration "
+               "Requires Team Member Action (TM-1...TM-8).",
+        files="Detector/reports/PROCESS-R2.md (Retest R2b section).",
+        followup="Documented by MASTER in the P-007 closure commit (docs/P007_FINAL_SUMMARY.md), together "
+                 "with that commit itself, as announced in the 'Documentation closure' notes.",
+    ),
     "60890c88|2026-11-22T20:24:29": dict(
         type="correction",
         summary="MASTER -> FIXER: FIX_REQUEST T-706b, close PROC-2-01/02 (documentation catch-up)",

@@ -20,15 +20,15 @@ Statuses: Pending · In Progress · Completed · Requires Team Member Action.
 ## Assignment
 | ID | Task | Agent | Files (write access) | Status |
 |---|---|---|---|---|
-| T-701 | Review existing prompt documentation; find missing/unnumbered/undocumented AI sessions (both transcripts, agent tasks) | DETECTOR | `Detector/reports/PROCESS-R1.md` (read-only elsewhere) | Pending |
-| T-702 | Review Git history: message quality, pushes/pulls evidence (`git log`, `git reflog`, remote refs), identities, collaboration evidence | DETECTOR | same report | Pending |
-| T-703 | Export every real prompt into separate numbered files `docs/prompts/Prompt_NN.md` (exact text from transcripts; 7 required fields) via a reproducible script `scripts/export_prompts.py` | FIXER | `docs/prompts/**`, `scripts/export_prompts.py` | Pending |
-| T-704 | Central chronological development history `docs/DEVELOPMENT_HISTORY.md` (sessions, prompts, agent tasks, builds, commits/pushes) | FIXER | `docs/DEVELOPMENT_HISTORY.md` | Pending |
-| T-705 | Git activity log `docs/GIT_LOG.md` (every commit/push with what & why; conventions for future commits) | FIXER | `docs/GIT_LOG.md` | Pending |
-| T-706 | Apply MASTER-approved Detector recommendations (docs only) | FIXER | as approved | Pending |
-| T-707 | Collaboration plan + exact actions for each team member | MASTER | `docs/COLLABORATION.md` | Pending |
-| T-708 | Commit each real milestone with descriptive conventional messages; push; document | MASTER | git | Pending |
-| T-709 | Final verification (9 checks) | DETECTOR → MASTER | `Detector/reports/PROCESS-R2.md` | Pending |
+| T-701 | Review existing prompt documentation; find missing/unnumbered/undocumented AI sessions (both transcripts, agent tasks) | DETECTOR | `Detector/reports/PROCESS-R1.md` (read-only elsewhere) | Completed |
+| T-702 | Review Git history: message quality, pushes/pulls evidence (`git log`, `git reflog`, remote refs), identities, collaboration evidence | DETECTOR | same report | Completed |
+| T-703 | Export every real prompt into separate numbered files `docs/prompts/Prompt_NN.md` (exact text from transcripts; 7 required fields) via a reproducible script `scripts/export_prompts.py` | FIXER | `docs/prompts/**`, `scripts/export_prompts.py` | Completed |
+| T-704 | Central chronological development history `docs/DEVELOPMENT_HISTORY.md` (sessions, prompts, agent tasks, builds, commits/pushes) | FIXER | `docs/DEVELOPMENT_HISTORY.md` | Completed |
+| T-705 | Git activity log `docs/GIT_LOG.md` (every commit/push with what & why; conventions for future commits) | FIXER | `docs/GIT_LOG.md` | Completed |
+| T-706 | Apply MASTER-approved Detector recommendations (docs only) | FIXER | as approved | Completed |
+| T-707 | Collaboration plan + exact actions for each team member | MASTER | `docs/COLLABORATION.md` | Completed |
+| T-708 | Commit each real milestone with descriptive conventional messages; push; document | MASTER | git | Completed |
+| T-709 | Final verification (9 checks) | DETECTOR → MASTER | `Detector/reports/PROCESS-R2.md` | Completed |
 | T-710 | Team-member actions (own Git identities, commits, pulls, pushes) | **Students** | — | Requires Team Member Action |
 
 ## Rules given to the agents
@@ -37,3 +37,5 @@ Statuses: Pending · In Progress · Completed · Requires Team Member Action.
   messages (e.g. "usage limit has reset") are recorded as system events, not human prompts.
 - History is not rewritten (no amend/rebase/force-push); old commits are documented, not renamed.
 - Agents do not run `git commit`/`push`; MASTER does, after reviewing.
+
+_Status updated 2026-11-22 at P-007 closure: T-701…T-709 Completed (DETECTOR QA_APPROVED DET-T709b-001); T-710 Requires Team Member Action. Summary: `docs/P007_FINAL_SUMMARY.md`._
