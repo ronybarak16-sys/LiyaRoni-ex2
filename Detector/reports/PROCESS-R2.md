@@ -105,3 +105,51 @@
 - 9 checks: 1, 3 and 5 are Completed. 2 is Completed for Prompt_01–17, with Prompt_18 In Progress. 4 and 9 are In Progress. 6 is In Progress for the push documentation and Requires Team Member Action for pulls. 8 is Completed for process evidence and Requires Team Member Action for collaboration. 7 Requires Team Member Action.
 - Privacy scan: PASS.
 - **Verdict: ISSUE_REPORT.** Three MINOR documentation items remain besides the team-member actions. QA_APPROVED can follow once PROC-2-01 to 03 are committed and re-checked.
+
+---
+
+## Retest R2b (RETEST_REQUEST M-m-025, T-709b, 2026-11-22)
+- Repository state checked: HEAD = origin/main = `80fc2d4` (`git ls-remote --heads origin` confirms). The working tree is clean.
+- New commits since PROCESS-R2: `7745de5` and `80fc2d4`, both made at 22:26:18 and pushed together at 22:26:21 (`git reflog show origin/main`).
+- I checked everything myself, against the transcripts and Git.
+
+### Verdicts
+| ID | Verdict | Evidence |
+|---|---|---|
+| PROC-2-01 | **VERIFIED** | DEVELOPMENT_HISTORY.md now lists every step up to Prompt_19, each with an exact time that matches the source: <ul><li>agent results at 22:16:38, 22:20:39 and 22:24:13 (transcript queue-operation enqueue records at 20:16:38Z, 20:20:39Z and 20:24:13Z)</li><li>commits 6f01187, 9ae3897, 3bc0d81 and 364e757 (times match `git log`)</li><li>the tags at 22:17:31 (`taggerdate` of all 3 tags = 22:17:31)</li><li>pushes at 22:17:34 and 22:21:12 (origin reflog)</li><li>Prompt_18 at 22:21:22 and Prompt_19 at 22:24:29 (SendMessage at 20:21:22Z and 20:24:29Z)</li></ul> |
+| PROC-1-14 | **VERIFIED** | GIT_LOG.md now has activity rows 15–21: the commits, the tags (annotated, tagger ronybarak16-sys), and the two pushes, noting which commits each push carried. It also has a refreshed verbatim reflog block and the `ls-remote` tag evidence. |
+| PROC-2-02 | **VERIFIED** | Prompt_18 and Prompt_19 exist with Type, purpose, result and follow-up filled in. Re-running `export_prompts.py --out <scratch>` reproduces all 19 committed files exactly, except the "of 19" → "of 20" counter. It also adds a Prompt_20 marked "Not recorded": this RETEST_REQUEST (SendMessage at 20:26:30Z). That gap is excused **by design**, because it is announced in the "Documentation closure" notes of DEVELOPMENT_HISTORY.md and GIT_LOG.md. |
+| PROC-2-03 | **VERIFIED** | AGENT_COMMUNICATION.md has a new "Exact-time message register" with 11 rows, one per MASTER→agent message from 13:12:26 to 22:24:29. Each row has the tool, task, message ID, Prompt file and result. The times match all 11 Agent/SendMessage calls in the transcript. The final 22:26:30 message (Prompt_20) is the documented closure item. |
+
+### The 2 new commits against the conventions
+| Commit | Subject (length) | Body explains why | `Refs:` trailer | One concern |
+|---|---|---|---|---|
+| `7745de5` | `docs(history): extend prompt files, history and Git log to Prompt_19` (68) | yes | `P-007, T-706b, PROC-2-01, PROC-2-02, PROC-1-14` | yes (the documentation catch-up, 23 files) |
+| `80fc2d4` | `qa(process): add Detector final check and exact-time message register` (70) | yes | `P-007, T-709, PROC-2-03` | acceptable |
+
+Observation, not a defect: `80fc2d4` commits the QA report together with the register edit in AGENT_COMMUNICATION.md. The convention suggests committing evidence separately; the body names both parts.
+
+### Privacy scan (re-run)
+- E-mail pattern over all tracked non-binary files: **0 matches**.
+- The string `system-reminder` appears only as the name of the stripped block, in 7 files: PROCESS-R1/R2, TASKS-P007, Prompt_15, Prompt_18, prompts/README and export_prompts.py. **No reminder content** appears in any of them.
+- The exporter reports "privacy scan: 0 e-mail addresses".
+- **PASS.**
+
+### Final status of the 9 checks
+| # | Check | Final status |
+|---|---|---|
+| 1 | All meaningful AI sessions documented | **Completed**. Who typed each prompt and why session 03e07aff was abandoned: Requires Team Member Action (TM-7) |
+| 2 | Separate numbered prompt files, reproducible and verbatim | **Completed**: Prompt_01–19, 8 of 8 byte-exact spot-checks. Prompt_20 is the documented closure item. |
+| 3 | Additions, corrections, improvements and LLM guidance represented | **Completed** |
+| 4 | Chronological history complete with exact times | **Completed**, through Prompt_19, `364e757` and the uncommitted T-706b work. The closure is documented. |
+| 5 | Commit messages meaningful and following the conventions | **Completed**: all 6 commits since PROCESS-R1 comply. |
+| 6 | Pushes and pulls reflected | Pushes: **Completed**. Pulls/merges: **Requires Team Member Action** (none so far). |
+| 7 | Both members under their own identities | **Requires Team Member Action**. All 13 commits are by `ronybarak16-sys`. |
+| 8 | Sufficient process and collaboration evidence | Process: **Completed**. Collaboration: **Requires Team Member Action**. |
+| 9 | Documentation accurate | **Completed**. PROC-1-01…08, 13, 14 and 15 are VERIFIED, and PROC-2-01…03 are VERIFIED. |
+
+### Open items (team only)
+- PROC-1-09…12 and TM-1…TM-8: own identities, collaborator access, clone, pull, commit and push by both members, plus the "Submitted by" fields.
+- These are listed in §4 above and in `docs/COLLABORATION.md`.
+
+**Verdict: QA_APPROVED.** Only team-member actions remain.
