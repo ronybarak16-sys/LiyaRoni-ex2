@@ -42,6 +42,20 @@ MASTER and the repository files (Detector/reports, Fixer/reports).
 | 2026-11-22 | AGENT → master | **detector → master** | QA_APPROVED DET-T007-R2-001 | all 26 R1 issues closed (VERIFIED; DET-1-26 accepted, DET-1-22 no action); no DET-2 regressions; 20 pp. |
 | 2026-11-22 | FILE | master | FINAL_ACCEPTANCE | MASTER's own 20-page visual pass + checks → accepted; README/docs updated; commit + push |
 
+### Exact-time message register (PROC-2-03; times from the session transcript, Asia/Jerusalem)
+| Time | Tool | From → To | Type / task | Prompt file | Result |
+|---|---|---|---|---|---|
+| 2026-11-20 13:12:26 | Agent | master → detector | QA_REQUEST T-005 | [Prompt_09](prompts/Prompt_09.md) | QA-R1 (DET-T005-R1-001) |
+| 2026-11-20 13:12:40 | Agent | master → fixer | SOURCE_AUDIT T-004 | [Prompt_10](prompts/Prompt_10.md) | SOURCE-AUDIT-R1 (M-f-001) |
+| 2026-11-20 13:27:38 | SendMessage | master → fixer | FIX_REQUEST T-006 (M-m-010) | [Prompt_11](prompts/Prompt_11.md) | interrupted by usage limit 13:52 |
+| 2026-11-22 21:53:59 | SendMessage | master → fixer | resume T-006 after limit reset | [Prompt_12](prompts/Prompt_12.md) | FIX-R1 + RETEST_REQUEST (M-f-002/003) |
+| 2026-11-22 21:56:57 | SendMessage | master → detector | RETEST_REQUEST T-007 (M-m-011) | [Prompt_13](prompts/Prompt_13.md) | QA-R2 QA_APPROVED (DET-T007-R2-001) |
+| 2026-11-22 22:12:23 | SendMessage | master → detector | QA_REQUEST T-701/702 (M-m-020) | [Prompt_15](prompts/Prompt_15.md) | PROCESS-R1, hand-back 22:16:38 (DET-T701-702-001) |
+| 2026-11-22 22:12:37 | SendMessage | master → fixer | TASK_ASSIGNMENT T-703…705 (M-m-021) | [Prompt_16](prompts/Prompt_16.md) | prompt files + histories, hand-back 22:20:39 (M-f-004) |
+| 2026-11-22 22:16:57 | SendMessage | master → fixer | FIX_REQUEST T-706 (M-m-022) | [Prompt_17](prompts/Prompt_17.md) | folded into M-f-004 |
+| 2026-11-22 22:21:22 | SendMessage | master → detector | RETEST_REQUEST T-709 (M-m-023) | [Prompt_18](prompts/Prompt_18.md) | PROCESS-R2 ISSUE_REPORT (DET-T709-001): PROC-2-01…03 |
+| 2026-11-22 22:24:29 | SendMessage | master → fixer | FIX_REQUEST T-706b (M-m-024) | [Prompt_19](prompts/Prompt_19.md) | TASK_COMPLETED M-f-005: PROC-2-01/02 closed (19 prompts, history + Git log through 364e757 and tags) |
+
 ## Connectivity matrix (6 directed links) — status after P-006/P-007 (corrected 2026-11-22, PROC-1-08)
 | Link | Status | Evidence |
 |---|---|---|
