@@ -8,7 +8,7 @@ pulls or pushes on a member's behalf.
 ## 1. Current evidence (verified by MASTER, 2026-11-22)
 | Evidence | Status |
 |---|---|
-| Commits | 6 commits, **all by the Git identity `ronybarak16-sys`** |
+| Commits | 6 commits before this plan + the commit that added it (98eae31) — **all by the Git identity `ronybarak16-sys`** |
 | Pushes | after every commit, to `origin/main` (see `docs/GIT_LOG.md`) |
 | Pulls / merges | **none** — the repository was only ever pushed from one clone |
 | Second identity in history | **none** |

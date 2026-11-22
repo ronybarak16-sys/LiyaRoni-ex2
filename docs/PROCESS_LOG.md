@@ -39,6 +39,9 @@ Agent = the Claude Code session that performed the action.
 | 32 | 2026-11-22 | detector | QA-R2 retest + regression scan | QA_APPROVED, 0 open issues |
 | 33 | 2026-11-22 | master | final visual pass of 20 pages; final acceptance; README/docs; commit + push | see git log |
 
-## Pending (requires human action)
-- Start the **detector** and **fixer** sessions (see `CLAUDE.md` → *Launching the agents*). Until then:
-  PRD review, source audit, QA round 1, fixes and retest have **not** happened.
+## Status note (corrected 2026-11-22, PROC-1-08)
+- The source audit, QA rounds R1/R2, fixes and retest **did happen** on 2026-11-20/22 with DETECTOR and
+  FIXER running as agents launched by MASTER (rows 27–33). The PRD review by the agents (T-002/T-003) did not happen.
+- Exact timestamps for every prompt are in `docs/prompts/` and `docs/DEVELOPMENT_HISTORY.md`; the `~` times in
+  this log are approximate (e.g. row 1 P-001 was received 21:04:58, not ~20:53).
+- Team-member actions still open: see `docs/COLLABORATION.md`.

@@ -1,5 +1,10 @@
 # Prompt history (Vibe Coding record)
 
+> **Superseded (2026-11-22, P-007):** the authoritative record is now one file per prompt in
+> [`docs/prompts/`](prompts/README.md) (exact text from the transcripts) and the central
+> [`docs/DEVELOPMENT_HISTORY.md`](DEVELOPMENT_HISTORY.md). Correction (PROC-1-01): an **earlier session**
+> (2026-11-18 20:13–20:52, two prompts, abandoned draft) preceded P-001 — the sentence below was wrong.
+
 Only prompts that actually occurred are listed. Earlier history: none — the project started in
 this session from three empty agent folders.
 

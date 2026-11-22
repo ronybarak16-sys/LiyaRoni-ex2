@@ -8,8 +8,9 @@ Legend — **TOOL**: a real `ListAgents` / `SendMessage` call whose result is qu
 | Agent | Session name | Status |
 |---|---|---|
 | MASTER | `liyaroni-ex2-7f` (to be renamed `master`) | running |
-| DETECTOR | `detector` (separate terminal) | not started — see below |
-| FIXER | `fixer` (separate terminal) | not started — see below |
+| DETECTOR | independent Claude Code agent launched by MASTER (Agent tool) on 2026-11-20 13:12 | ran T-005 (QA-R1), T-007 (QA-R2), T-701/702 (PROCESS-R1) |
+| FIXER | independent Claude Code agent launched by MASTER (Agent tool) on 2026-11-20 13:12 | ran T-004 (source audit), T-006 (FIX-R1), T-703…706 (process docs) |
+| (separate terminal sessions `detector`/`fixer`) | never started | `ListAgents` never listed them (log below) |
 
 **Execution mode from P-006 on:** the students asked MASTER to run Detector and Fixer. Because no
 separate interactive sessions exist, MASTER launched them as **independent Claude Code agents**
@@ -41,17 +42,17 @@ MASTER and the repository files (Detector/reports, Fixer/reports).
 | 2026-11-22 | AGENT → master | **detector → master** | QA_APPROVED DET-T007-R2-001 | all 26 R1 issues closed (VERIFIED; DET-1-26 accepted, DET-1-22 no action); no DET-2 regressions; 20 pp. |
 | 2026-11-22 | FILE | master | FINAL_ACCEPTANCE | MASTER's own 20-page visual pass + checks → accepted; README/docs updated; commit + push |
 
-## Connectivity matrix (6 directed links)
-| Link | Status |
-|---|---|
-| master → detector | NOT TESTED (detector not running) |
-| master → fixer | NOT TESTED (fixer not running) |
-| detector → master | NOT TESTED |
-| detector → fixer | NOT TESTED |
-| fixer → master | NOT TESTED |
-| fixer → detector | NOT TESTED |
+## Connectivity matrix (6 directed links) — status after P-006/P-007 (corrected 2026-11-22, PROC-1-08)
+| Link | Status | Evidence |
+|---|---|---|
+| master → detector | WORKS (Agent launch + SendMessage) | T-005, T-007, T-701/702 |
+| master → fixer | WORKS (Agent launch + SendMessage) | T-004, T-006, T-703…706 |
+| detector → master | WORKS (agent hand-back report) | DET-T005-R1-001, DET-T007-R2-001, DET-T701-702-001 |
+| fixer → master | WORKS (agent hand-back report) | M-f-001, M-f-002 (+ RETEST_REQUEST M-f-003 relayed by master) |
+| detector → fixer | NOT USED directly — relayed through MASTER (by design of the Agent-tool mode) | M-m-010, M-m-022 |
+| fixer → detector | NOT USED directly — relayed through MASTER | M-f-003 → M-m-011 |
 
-## Planned task handoffs (PLANNED — not yet sent)
+## Original plan from 2026-11-18 (historical; T-004 and T-005 were executed on 2026-11-20, T-001…T-003 were not)
 | Task | To | Type | Files |
 |---|---|---|---|
 | T-001 PING/PONG connectivity test | detector, fixer | STATUS_UPDATE | — |

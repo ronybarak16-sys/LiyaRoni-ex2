@@ -21,8 +21,11 @@ communication · prompt history · QA reports · source audit · reproducible bu
 Note: the pre-existing agent folders are capitalized (`Master/`, `Detector/`, `Fixer/`);
 they are kept as-is (Windows is case-insensitive; the brief's lowercase names map to them).
 
-## Launching the agents (human action)
-Open two additional terminals in this folder and in each run `claude`, then:
+## Launching the agents
+Mode actually used (2026-11-20 →): MASTER launches DETECTOR and FIXER as independent Claude Code
+agents (Agent tool, own context, own Skill) and continues them with `SendMessage`; reports are files
+in `Detector/reports/` and `Fixer/reports/`. Alternative (never used so far): separate terminals —
+open two additional terminals in this folder and in each run `claude`, then:
 - terminal 2: `/rename detector` then `/book-detector` — then: "wait for messages from master"
 - terminal 3: `/rename fixer` then `/book-fixer` — then: "wait for messages from master"
 The master session runs `ListAgents` to discover them and uses `SendMessage`.
