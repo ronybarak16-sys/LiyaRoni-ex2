@@ -1,27 +1,67 @@
 % =====================================================================
 %  references.bib — every entry must be audited by FIXER (docs/SOURCE_AUDIT.md)
 %  before release. Status at creation (Master draft): PENDING FIXER VERIFICATION.
+%  FIXER audit R1 (2026-11-20): metadata checked, see Fixer/reports/SOURCE-AUDIT-R1.md.
+%  FIX-R1 (2026-11-20): avma-warm (page unreadable) and aspca-apcc (superseded by
+%  aspca-poisoned) removed; new entries verified in SOURCE-AUDIT-R1 Part 3 added.
+%  Web pages without a stated publication date get no date field (printed as "n.d.").
 % =====================================================================
 
-@online{avma-warm,
-  author  = {{American Veterinary Medical Association}},
-  title   = {Warm weather pet safety},
-  url     = {https://www.avma.org/resources/pet-owners/petcare/warm-weather-pet-safety},
-  urldate = {2026-11-18}
+@online{humane-heat,
+  author  = {{Humane World for Animals}},
+  title   = {How to Keep Pets Safe in High Temperatures},
+  url     = {https://www.humaneworld.org/en/resources/keep-pets-safe-temperature-gets},
+  urldate = {2026-11-20}
 }
 
-@online{aspca-apcc,
+@online{rkc-pavements,
+  author  = {{The Royal Kennel Club}},
+  title   = {The danger of hot pavements},
+  url     = {https://www.royalkennelclub.com/hotpavements},
+  urldate = {2026-11-20}
+}
+
+@online{aspcapro-body,
   author  = {{ASPCA}},
-  title   = {Animal Poison Control},
-  url     = {https://www.aspca.org/pet-care/animal-poison-control},
-  urldate = {2026-11-18}
+  title   = {Canine Body Language Tips},
+  url     = {https://www.aspcapro.org/resource/canine-body-language-tips},
+  urldate = {2026-11-20}
+}
+
+@online{aspca-poisoned,
+  author  = {{ASPCA}},
+  title   = {What to Do if Your Pet Is Poisoned},
+  date    = {2019-03-20},
+  url     = {https://www.aspca.org/news/what-do-if-your-pet-poisoned},
+  urldate = {2026-11-20}
+}
+
+@online{banfield-poison,
+  author  = {{Banfield Pet Hospital}},
+  title   = {Help for pet poisoning: what to do right now},
+  url     = {https://www.banfield.com/Wellness-at-banfield/First-aid/Poisonings},
+  urldate = {2026-11-20}
+}
+
+@online{rspca-separation,
+  author  = {{RSPCA}},
+  title   = {Separation anxiety in dogs},
+  url     = {https://www.rspca.org.uk/adviceandwelfare/pets/dogs/behaviour/separationrelatedbehaviour},
+  urldate = {2026-11-20}
+}
+
+@online{rspca-fireworks,
+  author  = {{RSPCA}},
+  title   = {Keeping dogs, cats and other small pets safe during fireworks},
+  url     = {https://www.rspca.org.uk/adviceandwelfare/fireworks/pets},
+  urldate = {2026-11-20}
 }
 
 @online{aspca-foods,
   author  = {{ASPCA}},
   title   = {People Foods to Avoid Feeding Your Pets},
   url     = {https://www.aspca.org/pet-care/animal-poison-control/people-foods-avoid-feeding-your-pets},
-  urldate = {2026-11-18}
+  urldate = {2026-11-20}
 }
 
 @article{hall2020,
@@ -34,19 +74,30 @@
   doi     = {10.1038/s41598-020-66015-8}
 }
 
+@article{hall2020exertional,
+  author  = {Hall, Emily J. and Carter, Anne J. and O'Neill, Dan G.},
+  title   = {Dogs Don't Die Just in Hot Cars{\textemdash}Exertional Heat-Related Illness (Heatstroke) Is a Greater Threat to {UK} Dogs},
+  journal = {Animals},
+  volume  = {10},
+  number  = {8},
+  pages   = {1324},
+  year    = {2020},
+  doi     = {10.3390/ani10081324}
+}
+
 @online{avsab2021,
   author  = {{American Veterinary Society of Animal Behavior}},
   title   = {Position Statement on Humane Dog Training},
   year    = {2021},
   url     = {https://avsab.org/wp-content/uploads/2021/08/AVSAB-Humane-Dog-Training-Position-Statement-2021.pdf},
-  urldate = {2026-11-18}
+  urldate = {2026-11-20}
 }
 
 @online{avsab-puppy,
   author  = {{American Veterinary Society of Animal Behavior}},
   title   = {Position Statement on Puppy Socialization},
   year    = {2008},
-  url     = {https://avsab.org/resources/position-statements/},
+  url     = {https://avsab.org/wp-content/uploads/2024/12/Puppy-Socialization-Position-Statement-FINAL.pdf},
   urldate = {2026-11-20}
 }
 
@@ -67,18 +118,23 @@
   volume  = {13},
   number  = {1},
   pages   = {63--69},
-  year    = {2004}
+  year    = {2004},
+  doi     = {10.1017/S0962728600026683}
 }
 
 @online{rspca-behaviour,
   author  = {{RSPCA}},
-  title   = {Dog behaviour: understanding your dog},
-  url     = {https://www.rspca.org.uk/adviceandwelfare/pets/dogs/behaviour},
-  urldate = {2026-11-18}
+  title   = {Understanding your dog's body language},
+  url     = {https://www.rspca.org.uk/adviceandwelfare/pets/dogs/behaviour/understanding},
+  urldate = {2026-11-20}
 }
 
-@legislation{il-doglaw2002,
-  title   = {Dog Supervision Regulation Law, 5763{\textendash}2002 (Israel)},
-  note    = {Hebrew title: Hok le-Hasdarat ha-Pikuah al Klavim},
-  year    = {2002}
+% DET-1-12: @legislation has no biblatex driver; @misc with the verified official text.
+@misc{il-doglaw2002,
+  title        = {Dog Supervision Regulation Law, 5763{\textendash}2002 (Israel)},
+  note         = {Hebrew title: Hok le-Hasdarat ha-Pikuah al Klavim},
+  howpublished = {Full updated text (Nevo), hosted by gov.il},
+  year         = {2002},
+  url          = {https://www.gov.il/BlobFolder/legalinfo/law-dog-supervision-2002/he/regulation_law-regulating-supervision%20of%20dogs.pdf},
+  urldate      = {2026-11-20}
 }

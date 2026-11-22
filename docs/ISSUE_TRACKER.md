@@ -30,3 +30,35 @@ Closing rule: an issue is **CLOSED** only after DETECTOR marks it VERIFIED.
 
 Prefix `USR-` = reported by the students (prompt P-003) or found while fixing them.
 DETECTOR and FIXER issues: none yet — sessions not started.
+
+## DETECTOR round R1 issues (QA-R1 → retest QA-R2, 2026-11-22)
+Status column maintained by DETECTOR. Evidence: `Detector/reports/QA-R1.md`, `Detector/reports/QA-R2.md`.
+
+| ID | Sev. | File | Problem | Owner | Status |
+|---|---|---|---|---|---|
+| DET-1-01 | MAJOR | book/preamble.tex | colon fused into ה/ח/ת in Gisha / David Bold | fixer | VERIFIED (R2) |
+| DET-1-02 | MAJOR | preamble + ch1/3/4, intro, appendix | David `'` reads as yod | fixer | VERIFIED (R2) |
+| DET-1-03 | MINOR | preamble, ch1, acknowledgments | detached colon after `"`, `'`, digits, `}` | fixer | VERIFIED (R2) |
+| DET-1-04 | MINOR | all chapters | `(פרק 2)` / refs split across lines | fixer | VERIFIED (R2) |
+| DET-1-05 | MINOR | preamble (TOC) | leader dot glued to titles | fixer | VERIFIED (R2) |
+| DET-1-06 | MINOR | preamble | `\emph` / `\itshape` invisible | fixer | VERIFIED (R2) |
+| DET-1-07 | MINOR | figures/tikz/eight_block_diagram.tex | badge 4 hid arrowhead; label crowded badge 5 | fixer | VERIFIED (R2) |
+| DET-1-08 | MINOR | ch1, ch2 | justified narrow cells, big word gaps | fixer | VERIFIED (R2) |
+| DET-1-09 | MINOR | ch4 | emergency-card labels flush left | fixer | VERIFIED (R2) |
+| DET-1-10 | MINOR | ch3 | `ראשון–רביעי` wrapped | fixer | VERIFIED (R2) |
+| DET-1-11 | MINOR | preamble, scripts/build_book.py | "Rerun" warning in final log | fixer | VERIFIED (R2) |
+| DET-1-12 | MINOR | references.bib | biblatex no driver for `legislation` | fixer | VERIFIED (R2) |
+| DET-1-13 | MINOR | ch3, ch4 | "ערכת הכפילות" undefined | fixer | VERIFIED (R2) |
+| DET-1-14 | MINOR | intro, ch2 | spelling חציה → חצייה | fixer | VERIFIED (R2) |
+| DET-1-15 | SUGGESTION | ch2 | הגיאוגרפיה → הגאוגרפיה | fixer | VERIFIED (R2) |
+| DET-1-16 | SUGGESTION | ch1 | repeated "לא מתוחה" | fixer | VERIFIED (R2) |
+| DET-1-17 | SUGGESTION | ch3 | א'/ב' not introduced | fixer | VERIFIED (R2) |
+| DET-1-18 | SUGGESTION | ch1 | "שש קומות" vs floors 3→7 | fixer | VERIFIED (R2) |
+| DET-1-19 | SUGGESTION | ch3 | mixed numerals / English unit | fixer | VERIFIED (R2) |
+| DET-1-20 | SUGGESTION | acknowledgments | sentences ending with English word | fixer | VERIFIED (R2) |
+| DET-1-21 | SUGGESTION | preamble, references.bib | US dates; undated web sources | fixer | VERIFIED (R2) |
+| DET-1-22 | SUGGESTION | build-wide | mirrored parens in text layer (info only) | master | CLOSED – NO ACTION per MASTER triage (informational) |
+| DET-1-23 | SUGGESTION | preamble | cramped callout title tab | fixer | VERIFIED (R2) |
+| DET-1-24 | SUGGESTION | acknowledgments | ו\en{Fixer} → ו-\en{Fixer} | fixer | VERIFIED (R2) |
+| DET-1-25 | SUGGESTION | appendix | glossary not alphabetical | fixer | VERIFIED (R2) |
+| DET-1-26 | SUGGESTION | introduction / bidi | `\endL/\endR` log warning | — | VERIFIED (R2) – accepted as known harmless bidi list warning (127, same as HEAD) |

@@ -27,7 +27,10 @@
 \setotherlanguage{english}
 \usepackage[autostyle=false,style=english]{csquotes} % fixed English quotes in bibliography
 % biblatex must load AFTER polyglossia (prototype finding, see docs/PROCESS_LOG.md)
-\usepackage[style=numeric,sorting=none,backend=biber,autolang=other]{biblatex}
+\usepackage[style=numeric,sorting=none,backend=biber,autolang=other,date=iso,urldate=iso,seconds=true]{biblatex}
+% DET-1-21: ISO dates (2026-11-20) instead of the ambiguous US format 11/20/2026
+% DET-1-21: undated web pages print "n.d." instead of nothing
+\renewbibmacro*{date}{\iffieldundef{year}{\bibstring{nodate}}{\printdate}}
 
 % ---------- Fonts (Windows system fonts verified in Phase 0) ----------
 \setmainfont{David}[Script=Hebrew,Scale=1.12,BoldFont=David Bold]
@@ -65,13 +68,38 @@
 \newXeTeXintercharclass\hebletterclass
 \XeTeXcharclass`\:=\colonclass
 \XeTeXcharclass`\;=\colonclass
-% Hebrew letters U+05D0..U+05EA get their own class so the kern never fires after ')' or digits
+% Hebrew letters U+05D0..U+05EA get their own class so the letter kern never fires after ')';
+% digits get their own (smaller-scope) rule below
 \count255="05D0 \loop \XeTeXcharclass\count255=\hebletterclass \ifnum\count255<"05EA \advance\count255 by 1 \repeat
-\XeTeXinterchartoks \hebletterclass \colonclass = {\kern-0.14em}
+% FONT-DEPENDENT kern (DET-1-01/03): the -0.14em value is right for David *Regular* only. In David
+% Bold and Gisha (headings, box titles, cover, TikZ) it pushed the colon into the letter, so that
+% "ה:"/"ח:" read as "ת". \hc@colonkern{David-regular}{David-bold}{Gisha} picks the kern from the
+% current font family/series when the colon is typeset. Digits use bidi's own digit class.
+\makeatletter
+\def\hc@isfam#1{\ifnum\strcmp{\f@family}{#1(0)}=0 1\else\ifnum\strcmp{\f@family}{#1(1)}=0 1\else 0\fi\fi}
+\def\hc@colonkern#1#2#3{%
+  \ifnum\hc@isfam{David}=1 \ifnum\strcmp{\f@series}{m}=0 \kern#1\relax\else\kern#2\relax\fi
+  \else\ifnum\hc@isfam{Gisha}=1 \kern#3\relax\fi\fi}
+\XeTeXinterchartoks \hebletterclass \colonclass = {\hc@colonkern{-0.14em}{0em}{0.04em}}
+\XeTeXinterchartoks \bidi@digits@charclass \colonclass = {\hc@colonkern{-0.14em}{0em}{0em}}
+% After a quote mark / geresh drawn in Gisha (a font switch resets XeTeX's inter-character
+% state), look ahead without consuming spaces and tighten a following colon.
+\let\hc@colontok=:
+\def\hc@colonfix{\futurelet\hc@next\hc@colonfix@}
+\def\hc@colonfix@{\ifx\hc@next\hc@colontok\hc@colonkern{-0.20em}{-0.14em}{0em}\fi}% values chosen from 330-dpi renders
 % Quotation mark: David draws '"' slanted, so it looked like two yods ("יי") to readers and OCR
 % (P-005). Typeset the ASCII quote with Gisha's upright glyph; the PDF text layer keeps U+0022.
-\AtBeginDocument{\catcode`\"=\active}
-{\catcode`\"=\active \protected\gdef"{{\hebrewfontsf\char34}}}
+% Activated in begindocument/before, i.e. BEFORE main.aux is read: labels whose caption text
+% contains '"' are then read and re-checked with the same catcode, which removes the endless
+% "Label(s) may have changed. Rerun" warning (DET-1-11 root cause).
+\AddToHook{begindocument/before}{\catcode`\"=\active}
+{\catcode`\"=\active \protected\gdef"{{\hebrewfontsf\char34}\hc@colonfix}}
+% Geresh (DET-1-02): David's ASCII "'" is a slanted stroke that reads as yod ("א'" -> "אי").
+% Write \gr in Hebrew text (א\gr, תוכנית ב\gr, פיג\gr מה): Gisha's upright glyph, text layer
+% keeps U+0027. "'" itself is NOT made active (math primes, TikZ, bibliography names like O'Neill).
+\protected\def\gr{{\hebrewfontsf\char39}\hc@colonfix}
+\pdfstringdefDisableCommands{\def\gr{'}}% PDF bookmarks (TOC entries "נספח א'")
+\makeatother
 % allow line breaks inside long bibliography URLs
 \renewcommand*{\bibfont}{\small}
 \setcounter{biburlnumpenalty}{100}\setcounter{biburlucpenalty}{200}\setcounter{biburllcpenalty}{100}
@@ -147,10 +175,12 @@
 
 % ---------- Table of contents ----------
 % compact spacing so the expanded TOC (20-page edition) still fits on one page
+% fixed gap before the leaders (DET-1-05): the first dot must never touch the title and read as
+% a sentence-final period
 \titlecontents{chapter}[0pt]{\addvspace{3pt}\sffamily\bfseries\color{navy}}
-  {}{}{\titlerule*[0.6pc]{.}\contentspage}
+  {}{}{\hspace{0.8em}\titlerule*[0.6pc]{.}\contentspage}
 \titlecontents{section}[1.5em]{\addvspace{0pt}\small\linespread{0.86}\selectfont}
-  {}{}{\titlerule*[0.6pc]{.}\contentspage}
+  {}{}{\hspace{0.8em}\titlerule*[0.6pc]{.}\contentspage}
 
 % ---------- Headers / footers ----------
 \pagestyle{fancy}
@@ -185,7 +215,7 @@
 % (including inline tcolorboxes such as the Chapter 3 checklist) is covered.
 \tcbset{before title={\leavevmode}}
 \tcbset{calloutbase/.style={enhanced,breakable,arc=3mm,boxrule=0.8pt,
-    left=8pt,right=8pt,top=5pt,bottom=5pt,before skip=8pt,after skip=8pt,
+    left=8pt,right=8pt,top=8pt,bottom=5pt,before skip=8pt,after skip=8pt,% top 5->8pt (DET-1-23)
     fonttitle=\sffamily\bfseries\normalsize,coltitle=white,
     attach boxed title to top right={xshift=-10pt,yshift=-8pt},
     boxed title style={arc=2mm,boxrule=0pt}}}
@@ -204,7 +234,7 @@
 % טיפ מהשטח — dashed sage, quote-like
 \newtcolorbox{fieldbox}[1][טיפ מהשטח]{enhanced,breakable,arc=3mm,boxrule=0pt,
   colback=cream,left=10pt,right=10pt,top=6pt,bottom=6pt,before skip=8pt,after skip=8pt,
-  borderline={1pt}{0pt}{sage,dashed},fontupper=\itshape,
+  borderline={1pt}{0pt}{sage,dashed},
   title={#1:},fonttitle=\sffamily\bfseries\small,coltitle=sagedark,
   attach title to upper={\enspace},}
 % מידע חירום — strong red frame
@@ -213,6 +243,12 @@
   before skip=8pt,after skip=8pt,
   title={\medicon\enspace #1},fonttitle=\sffamily\bfseries\large,colbacktitle=alert,coltitle=white,
   borderline west={4pt}{0pt}{alert}}
+
+% David and Gisha have no italic (log: "Font shape TU/David(1)/m/it undefined"), so \emph was
+% invisible (DET-1-06). Emphasis = bold.
+\DeclareRobustCommand{\emph}[1]{\textbf{#1}}
+% English bibliography (Arial) keeps real italics for titles/journals
+\AtBeginBibliography{\renewcommand*{\mkbibemph}[1]{\textit{#1}}}
 
 % Small inline LTR helper for English terms / times
 \newcommand{\en}[1]{\textenglish{#1}}

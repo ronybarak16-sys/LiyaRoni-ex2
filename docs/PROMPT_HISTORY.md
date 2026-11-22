@@ -77,6 +77,21 @@ this session from three empty agent folders.
   intended word, not "רגליות".
 - **Status:** done; 20 pages; DETECTOR review still not possible (no session).
 
+### P-006 — "הפעל את Detector ו-Fixer כדי לסגור את כל הליקויים…"
+- **Date:** 2026-11-20 → 2026-11-22 · **Agent:** master (orchestrating detector + fixer)
+- **Prompt (summary):** 11 remaining defects seen by the students (cover `קבוצת`, TOC, `מהשטת`, map
+  label, `בלה 2.2`, missing n/i, `אי:/בי:`, `תוכנית בי`, `(פרק .(2`, `(Source Audit`, `3.1:` without
+  איור); run a full Detector review, let Fixer fix every finding, retest until no open errors; update
+  README; commit and push.
+- **Execution:** no separate sessions existed, so MASTER launched DETECTOR and FIXER as independent
+  Claude Code agents with their Skills. Real cycle: QA-R1 → SOURCE-AUDIT-R1 → TRIAGE-R1 → FIX-R1
+  (interrupted by a usage limit, resumed) → MASTER independent re-check → QA-R2 = QA_APPROVED.
+- **Key findings:** of the students' 11 items, 1 real, 5 real-visual (David's `'` looks like a yod; the
+  P-005 colon kern made `ה:`/`ח:` look like `ת` in Gisha/David Bold), 6 not reproduced. Detector also
+  found 20 further issues (spelling חצייה, "שש קומות" vs floors 3→7, TOC leaders, rerun warning…).
+  Fixer's audit replaced an unreadable AVMA source and a misattributed heat-stroke list.
+- **Status:** done — 0 open issues, 20 pages.
+
 ---
 ## Internal refinement iterations (master, driven by P-001)
 These are not new user prompts; they are the natural-language-guided iterations Claude made

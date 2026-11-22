@@ -31,6 +31,13 @@ Agent = the Claude Code session that performed the action.
 | 24 | 2026-11-20 ~12:45 | master | P-005 review received; `ListAgents` → no peers | text layer checked with PyMuPDF and pdftotext: ״ and • present → glyph-readability problem, not wrong characters |
 | 25 | ~12:50 | master | Quote/geresh replacement, Gisha quote glyph, bullets, colon kern, `\paw` \leavevmode, per-line audit | old PDF: audit now reports `BAD LINE p.18` (footer); new PDF: 0 |
 | 26 | ~12:55 | master | Colon kern hit `)` in the emergency card → restricted to Hebrew letters; table cells m-columns; graph "דקות" | 20 pages, 0 overfull, 0 reversed, 0 bad lines, 25/25 probes, validate 0 FAIL |
+| 27 | 2026-11-20 ~13:10 | master | P-006: launched DETECTOR (QA-R1) and FIXER (source audit) as independent agents | see AGENT_COMMUNICATION |
+| 28 | 2026-11-20 | detector / fixer | QA-R1 (26 findings; students' list 1 real, 5 real-visual, 6 not reproduced); SOURCE-AUDIT-R1 (AVMA page unreadable; heat-stroke list misattributed; 5 metadata fixes) | reports in Detector/ and Fixer/ |
+| 29 | 2026-11-20 | master | triage TRIAGE-R1 → FIX_REQUEST to fixer | — |
+| 30 | 2026-11-20→22 | fixer | fixes; interrupted by API usage limit, resumed after reset | FIX-R1: 20 pp., 0 overfull/undefined/rerun, audits clean |
+| 31 | 2026-11-22 | master | independent re-run of build + audits; RETEST_REQUEST to detector | numbers confirmed |
+| 32 | 2026-11-22 | detector | QA-R2 retest + regression scan | QA_APPROVED, 0 open issues |
+| 33 | 2026-11-22 | master | final visual pass of 20 pages; final acceptance; README/docs; commit + push | see git log |
 
 ## Pending (requires human action)
 - Start the **detector** and **fixer** sessions (see `CLAUDE.md` → *Launching the agents*). Until then:

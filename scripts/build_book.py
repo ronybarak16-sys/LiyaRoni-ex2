@@ -17,6 +17,7 @@ BOOK = ROOT / "book"
 BUILD = ROOT / "build"
 OUTPUT = ROOT / "output" / "final_book.pdf"
 MAX_PAGES = 20
+RERUN_RE = re.compile(r"Rerun to get|Please rerun LaTeX|Please \(re\)run Biber")
 
 
 def run(cmd, cwd):
@@ -47,8 +48,14 @@ def build_pdf():
              f"-output-directory={BUILD}", "main.tex"]
     run(latex, BOOK)
     run(["biber", f"--input-directory={BUILD}", f"--output-directory={BUILD}", "main"], BOOK)
-    run(latex, BOOK)
-    run(latex, BOOK)
+    # DET-1-11: rerun until labels/TOC are stable (max 5 passes), never ship "Rerun to get ..."
+    for _ in range(5):
+        run(latex, BOOK)
+        log = (BUILD / "main.log").read_text(encoding="utf-8", errors="replace")
+        if not RERUN_RE.search(log):
+            break
+    else:
+        raise SystemExit("FAILED: LaTeX still asks for a rerun after 5 passes")
 
 
 def report():
@@ -63,7 +70,9 @@ def report():
     undefined = len(re.findall(r"undefined", log, re.I))
     missing = len(re.findall(r"Missing character", log))
     print(f"\nPDF: {OUTPUT.relative_to(ROOT)}  pages={pages} (max {MAX_PAGES})")
-    print(f"log: overfull hbox={overfull}  'undefined' mentions={undefined}  missing glyphs={missing}")
+    rerun = len(RERUN_RE.findall(log))
+    print(f"log: overfull hbox={overfull}  'undefined' mentions={undefined}  missing glyphs={missing}"
+          f"  rerun warnings={rerun}")
     if pages > MAX_PAGES:
         raise SystemExit(f"FAIL: {pages} pages > {MAX_PAGES}")
 

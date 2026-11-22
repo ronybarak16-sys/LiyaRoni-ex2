@@ -1,6 +1,6 @@
 # Final checklist (acceptance gates)
 
-Status as of 2026-11-20 (after P-004). **The project is NOT finished.**
+Status as of 2026-11-22 (after P-006: Detector/Fixer QA cycle, QA_APPROVED). **The project is NOT finished.**
 
 | Gate | Item | Status | Evidence |
 |---|---|---|---|
@@ -13,11 +13,11 @@ Status as of 2026-11-20 (after P-004). **The project is NOT finished.**
 | B | Colors, backgrounds, callouts | PASS (master) — DETECTOR review pending | |
 | C | Separate chapter files, reproducible build, scripts, dependencies | PASS | book/, scripts/, requirements.txt |
 | D | 3 Skills exist and are discovered | PASS | harness listing |
-| D | Three agents actually ran | **FAIL (pending)** | detector/fixer not started |
-| D | Real communication, QA findings, fixes, retest | **FAIL (pending)** | AGENT_COMMUNICATION.md |
+| D | Three agents actually ran | PASS (with note) | DETECTOR and FIXER ran as independent Claude Code agents launched by MASTER (Agent tool), each with its own context and Skill; separate interactive terminal sessions were never started |
+| D | Real communication, QA findings, fixes, retest | PASS | AGENT_COMMUNICATION.md: QA_REQUEST → ISSUE_REPORT (QA-R1) → triage → FIX_REQUEST → FIX_COMPLETED (FIX-R1) → RETEST_REQUEST → QA_APPROVED (QA-R2); SOURCE_AUDIT by FIXER |
 | E | PRD | PASS (v0.3) — review pending | docs/PRD.md |
 | E | README with real screenshots | PASS | assets/readme/ |
-| E | Prompt history, communication log, source audit, QA, matrix | PARTIAL | docs/ |
+| E | Prompt history, communication log, source audit, QA, matrix | PASS | docs/, Detector/reports, Fixer/reports |
 | F | Final PDF, LaTeX sources, Git | PASS | output/, book/, GitHub |
 | F | Assignment report per template | **BLOCKED** | template not provided |
 | F | No unsupported claims of completion | PASS | this file |
@@ -26,10 +26,12 @@ Status as of 2026-11-20 (after P-004). **The project is NOT finished.**
 | P-003 | p.9 title "רשימת ציוד קבועה ליד הדלת" correct + right-aligned | PASS (master) | now p.11 render, audit |
 | P-003 | Hebrew word order across the PDF | PASS (automated + visual) | audit_rtl_full.py 0 reversed |
 | P-003 | Detector independent QA | **NOT PERFORMED** | detector session not running |
+| P-006 | Detector full review + Fixer fixes + Detector retest until no open issues | PASS | QA-R2: all 26 R1 issues VERIFIED/closed, 0 regressions |
+| P-006 | Source audit of all references | PASS | 16 entries checked; 18 VERIFIED, 4 PARTIAL (hedged), 1 REMOVED |
 | P-005 | Quotes/gershayim, bullets, colons, footer RTL, formula sentence, graph labels, tables | PASS (master) | QA_REPORT C2, renders, audit 0 bad lines |
 | P-004 | Book exactly 20 pages, substantive content, TOC on one page, RTL audit 0 reversed | PASS (master) | build log, audit_rtl_full.py, visual pass of all pages |
 
 ## Remaining blockers → smallest next action
-1. Start `detector` and `fixer` sessions (CLAUDE.md → *Launching the agents*), then tell master "agents are up".
+1. Optional: if the course requires *separate terminal sessions*, start `detector`/`fixer` terminals (CLAUDE.md) — the QA cycle itself is complete.
 2. ~~Provide author names + group code~~ — done (P-003). Note: the code supplied, `liyaroni-ex2`, has 12 characters; confirm it matches the instructor's required format.
 3. Provide the instructor's report template (and the verbatim P-001 prompt text for `docs/prompts/`).

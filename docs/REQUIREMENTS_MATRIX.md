@@ -21,13 +21,13 @@ Result: PASS (verified with evidence) · PENDING (needs another agent) · MANUAL
 | 8-block diagram | figures/tikz/eight_block_diagram.tex | 15 | regex count = 8 + visual | PASS |
 | Callout boxes (≥ 4 distinct) | preamble.tex: tipbox, knowbox, mistakebox, notebox, fieldbox, emergencybox | 2–20 | visual | PASS |
 | Appendices: glossary, fridge sheet | backmatter/appendix.tex | 17, 18 | visual | PASS |
-| Real, verified bibliography | references.bib (10 entries) | 19 | FIXER audit | **PENDING (fixer not started)** |
+| Real, verified bibliography | references.bib (16 entries) | 19 | FIXER audit (WebFetch/WebSearch) | PASS — 18 claims VERIFIED, 4 PARTIAL with hedged wording |
 | Captions + visual credits, production note | all figures; backmatter/acknowledgments.tex | 6–20 | visual | PASS |
 | Page numbers + running headers | preamble.tex (fancyhdr) | all | visual | PASS |
-| Correct RTL | all | all | audit_rtl_full.py 0/2,652 reversed, check_rtl.py 25/25, visual pass of all 20 pages | PASS (master) / PENDING detector |
+| Correct RTL | all | all | audit_rtl_full.py 2,643/2,643 correct, 0 bad lines, check_rtl.py 25/25, visual pass of all 20 pages | PASS (DETECTOR QA-R2) |
 | No leading "!" in headings | preamble.tex (icons) | 4, 9 | grep + render | PASS (master) |
 | Ch.3 checklist title correct + right-aligned | preamble.tex (`before title`) | 11 | bigram audit + render | PASS (master) |
-| Hebrew language quality | all | all | DETECTOR review | PENDING |
+| Hebrew language quality | all | all | DETECTOR review R1 + retest R2 | PASS (QA_APPROVED) |
 
 ## Project deliverables
 | Requirement | Evidence | Result |
@@ -39,10 +39,10 @@ Result: PASS (verified with evidence) · PENDING (needs another agent) · MANUAL
 | PRD | docs/PRD.md v0.3 | PASS (draft) / review PENDING |
 | Three Skills | .claude/skills/book-*/SKILL.md (harness discovered them) | PASS |
 | Multi-agent architecture doc | docs/ARCHITECTURE.md | PASS |
-| **Real communication between 3 agents** | docs/AGENT_COMMUNICATION.md | **BLOCKED – detector/fixer not started** |
+| Real communication between 3 agents | docs/AGENT_COMMUNICATION.md, Detector/reports, Fixer/reports | PASS — agents launched by MASTER (not separate terminals) |
 | Prompt history | docs/PROMPT_HISTORY.md | PASS (P-001 verbatim text to be attached) |
-| QA reports, issue resolution | docs/QA_REPORT.md, docs/ISSUE_TRACKER.md | PENDING (no detector round yet) |
-| Source audit | docs/SOURCE_AUDIT.md | PENDING |
+| QA reports, issue resolution | docs/QA_REPORT.md, docs/ISSUE_TRACKER.md, QA-R1/R2, FIX-R1 | PASS |
+| Source audit | docs/SOURCE_AUDIT.md, Fixer/reports/SOURCE-AUDIT-R1.md | PASS |
 | Build instructions | README.md, CLAUDE.md, scripts/build_book.py | PASS |
 | Git repository | GitHub origin/main | PASS |
 | Assignment report PDF (instructor template) | — | **BLOCKED – template not in repository** |

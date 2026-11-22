@@ -34,7 +34,8 @@
 
   % ---- step numbers (badges, not blocks) ----
   \foreach \b/\n in {B1/1,B2/2,B3/3,B5/5,B6/6,B7/7,B8/8}{\node[num] at (\b.north east) {\n};}
-  \node[num] at (B4.north) {4};
+  % west vertex: the 3->4 arrowhead at the top vertex stays visible (DET-1-07)
+  \node[num] at (B4.west) {4};
 
   % ---- arrows ----
   \draw[arr] (B1) -- (B2);
@@ -42,7 +43,7 @@
   \draw[arr] (B3) -- (B4);
   \draw[arr] (B4) -- node[lbl,above=3pt,pos=0.45] {\RLE{כן}} (B6);
   \draw[arr] (B6) -- (B7);
-  \draw[arr] (B4) -- node[lbl,right=2pt] {\RLE{לא, בוודאות}} (B5);
+  \draw[arr] (B4) -- node[lbl,left=2pt] {\RLE{לא, בוודאות}} (B5); % left side: clear of badge 5 and connector (DET-1-07)
   \draw[arr] (B5.east) -- node[lbl,above=1pt] {\RLE{הכול תקין}} (B8.west);
   \draw[arr] ([xshift=-0.4cm]B5.north east) |- ([yshift=-0.45cm]B6.south) -- (B6.south);
   \node[lbl,anchor=north] at ([yshift=-0.5cm,xshift=0.3cm]B6.south) {\RLE{הופיע סימן חריג}};

@@ -46,6 +46,16 @@ def main():
     except Exception as exc:  # noqa: BLE001
         rec("PDF exists and opens", "FAIL", str(exc))
 
+    # ---- build log (DET-1-11): references must be settled ----
+    log_path = ROOT / "build" / "main.log"
+    if log_path.exists():
+        log = log_path.read_text(encoding="utf-8", errors="replace")
+        reruns = re.findall(r"Rerun to get|Please rerun LaTeX|Please \(re\)run Biber", log)
+        rec("Build log has no 'Rerun' warning", "PASS" if not reruns else "FAIL",
+            f"{len(reruns)} rerun warning(s) in build/main.log")
+    else:
+        rec("Build log has no 'Rerun' warning", "NOT VERIFIED", "build/main.log missing")
+
     # ---- sources ----
     for rel in ["book/main.tex", "book/preamble.tex", "book/references.bib",
                 "book/frontmatter/cover.tex", "book/frontmatter/abstract.tex",

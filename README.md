@@ -19,11 +19,11 @@ Vibe Coding academic project.
 ## Project status
 | | |
 |---|---|
-| Book | ✅ compiles, exactly 20 / 20 pages, all mandatory elements present |
-| RTL check | ✅ whole-book audit: 0 reversed of 2,652 word pairs (`scripts/audit_rtl_full.py`) + 25/25 targeted probes |
-| Source audit (FIXER) | ⏳ pending, FIXER session not yet started |
-| Independent QA (DETECTOR) | ⏳ pending, DETECTOR session not yet started |
-| Live 3-agent communication | ⏳ pending (see [AGENT_COMMUNICATION](docs/AGENT_COMMUNICATION.md)) |
+| Book | ✅ compiles, exactly 20 / 20 pages, all mandatory elements present; 0 overfull boxes, 0 undefined refs, 0 rerun warnings |
+| RTL check | ✅ whole-book audit: 2,643 / 2,643 word pairs in correct order, 0 mostly-reversed lines (`scripts/audit_rtl_full.py`) + 25/25 targeted probes |
+| Source audit (FIXER) | ✅ 16 bibliography entries opened and checked; claims: 18 VERIFIED, 4 PARTIALLY VERIFIED (hedged wording), 1 REMOVED, 1 N/A ([SOURCE_AUDIT](docs/SOURCE_AUDIT.md)) |
+| Independent QA (DETECTOR) | ✅ round R1: 26 findings → all fixed by FIXER → round R2 retest **QA_APPROVED**, 0 open issues ([QA-R1](Detector/reports/QA-R1.md), [QA-R2](Detector/reports/QA-R2.md)) |
+| 3-agent collaboration | ✅ Detector and Fixer ran as independent Claude Code agents launched by Master (own context + own Skill), with real task/report messages — see [AGENT_COMMUNICATION](docs/AGENT_COMMUNICATION.md). Separate interactive terminal sessions were never started. |
 | Report PDF (instructor template) | ⛔ template not provided |
 
 Details are in [`docs/FINAL_CHECKLIST.md`](docs/FINAL_CHECKLIST.md).
@@ -32,7 +32,7 @@ Details are in [`docs/FINAL_CHECKLIST.md`](docs/FINAL_CHECKLIST.md).
 | # | Chapter | Highlights |
 |---|---|---|
 | 1 | הפסיכולוגיה של הכלב העירוני: *איך לשרוד מעלית עם שלושה כלבים וחתול* | body-language panel, elevator scene (TikZ), elevator etiquette, puppy exposure ladder (TikZ), home alone |
-| 2 | מיפוי שטח: *הגיאוגרפיה של גינות כלבים ופינות הצל הנכונות* | Python-drawn neighborhood map, walking-environments table, seasons table, dog-park etiquette |
+| 2 | מיפוי שטח: *הגאוגרפיה של גינות כלבים ופינות הצל הנכונות* | Python-drawn neighborhood map, walking-environments table, seasons table, dog-park etiquette |
 | 3 | לוגיסטיקה ואופרציות: *איך לארגן את התיק לטיול של חמש דקות שנגמר בשעה* | gear checklist, formula $T_{daily}=\sum t_i$, matplotlib graph, example week table, emergency bag |
 | 4 | מדריך הישרדות: *שאלות נפוצות ותקלות נפוצות* | 11 FAQs, 8-block decision flowchart, emergency box, fill-in emergency card |
 
@@ -72,7 +72,17 @@ Natural-language prompts → generated code → **run** → **inspect output** �
 from this project, each found by running and inspecting the output:
 - The LaTeX prototype exposed a package-order error (biblatex before polyglossia) before the full book was written.
 - A hand-written RTL helper double-reversed matplotlib's Hebrew text. matplotlib 3.11 already handles bidi, so the helper was removed.
-- TikZ node text proved to be LTR under bidi. Visual checking was unreliable, so the project gained an automated position-based RTL probe.
+- TikZ node text proved to be LTR under bidi. Visual checking was unreliable, so the project gained an automated position-based RTL probe, later extended to a whole-book, line-by-line audit.
+- Student reviewers saw `"ייזה…"` and `קבוצת`: the text layer was correct, but the David font draws `״`, `"` and `'` like yods, and a colon kern merged `ה:` into `ת`. The fix: upright Gisha glyphs for quotes and geresh, and font-aware colon spacing.
+
+### Final QA cycle (Detector ↔ Fixer)
+| Step | Agent | Output |
+|---|---|---|
+| Full review + verification of the students' 11-item list | DETECTOR | [`Detector/reports/QA-R1.md`](Detector/reports/QA-R1.md): 0 CRITICAL, 2 MAJOR, 12 MINOR, 12 SUGGESTION; of the students' items, 1 real, 5 real-visual, 6 not reproduced |
+| Source audit of every reference and claim | FIXER | [`Fixer/reports/SOURCE-AUDIT-R1.md`](Fixer/reports/SOURCE-AUDIT-R1.md): an unreadable AVMA page and misattributed heat-stroke signs were replaced with verified sources |
+| Triage | MASTER | [`Master/work/TRIAGE-R1.md`](Master/work/TRIAGE-R1.md) |
+| Fixes | FIXER | [`Fixer/reports/FIX-R1.md`](Fixer/reports/FIX-R1.md): all approved items fixed, still 20 pages |
+| Independent retest | DETECTOR | [`Detector/reports/QA-R2.md`](Detector/reports/QA-R2.md): all R1 issues VERIFIED, no regressions → **QA_APPROVED** |
 
 See [`docs/PROMPT_HISTORY.md`](docs/PROMPT_HISTORY.md) and [`docs/PROCESS_LOG.md`](docs/PROCESS_LOG.md).
 
@@ -81,7 +91,7 @@ Prerequisites: Python ≥ 3.11, a TeX distribution with XeLaTeX + biber (develop
 and the Windows fonts David, Gisha, Arial and Courier New.
 ```powershell
 pip install -r requirements.txt
-python scripts/build_book.py          # figures → xelatex → biber → xelatex ×2 → output/final_book.pdf
+python scripts/build_book.py          # figures → xelatex → biber → xelatex (until stable) → output/final_book.pdf
 python scripts/check_rtl.py           # targeted RTL word-order probes
 python scripts/audit_rtl_full.py      # whole-book RTL audit (source word pairs vs PDF)
 python scripts/validate_project.py    # requirement checks → docs/VALIDATION_RESULTS.md

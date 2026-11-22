@@ -10,9 +10,10 @@
   stated as such.
 
 ## Weaknesses / known limitations
-- **Gate D not met yet:** detector and fixer sessions have not run; no real inter-agent messages exist.
-- Bibliography is unaudited (FIXER pending). Some claims (C-07, C-09, C-16, C-17) are unsourced.
-- Hebrew language quality has not been independently reviewed.
+- Detector and Fixer ran as agents launched by Master, not as three separately opened terminal
+  sessions; agents communicated through Master (task prompts, reports, SendMessage), not directly.
+- Four claims remain PARTIALLY VERIFIED (hedged wording); one claim was removed rather than sourced.
+- The earliest RTL/quote fixes were made by Master alone before the agents ran (documented).
 - The book sits exactly at the 20-page maximum (students' request): any future addition must be
-  balanced by a cut. The six new claims C-19…C-24 add to the unaudited set.
+  balanced by a cut. The claims C-19…C-24 were audited by Fixer in R1.
 - Instructor report template not available → report PDF not produced.

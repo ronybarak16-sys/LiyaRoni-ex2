@@ -59,7 +59,8 @@ Result: 20 pages, 0 overfull boxes, `audit_rtl_full.py` 0 reversed / 0 bad lines
 ## Independent QA rounds (DETECTOR)
 | Round | Date | Scope | CRIT | MAJ | MIN | SUG | Report | Status |
 |---|---|---|---|---|---|---|---|---|
-| R1 | — | full review A–P | — | — | — | — | `Detector/reports/QA-R1.md` | **NOT STARTED – detector session not running** |
+| R1 | 2026-11-20 | full review A–P + students' 11-item list | 0 | 2 | 12 | 12 | `Detector/reports/QA-R1.md` | done → triage `Master/work/TRIAGE-R1.md` → fixes `Fixer/reports/FIX-R1.md` |
+| R2 | 2026-11-22 | retest of all R1 IDs + full regression scan | 0 | 0 | 0 | 0 | `Detector/reports/QA-R2.md` | **QA_APPROVED** — all R1 issues VERIFIED (DET-1-26 accepted as harmless bidi log warning, DET-1-22 no action), no DET-2 issues |
 
 Master's own pre-QA self-inspection findings are in `docs/ISSUE_TRACKER.md` (M-01…M-11). They are
 not a substitute for independent review.
